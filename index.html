@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -51,7 +50,6 @@
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="R GAMES — Free Online Quiz Games">
   <meta name="twitter:description" content="Play free quizzes about Star Wars, cars, Christmas, movies, art and world history.">
-</head>
   
   <style>
     * { box-sizing: border-box; }
@@ -283,6 +281,36 @@
       margin-top: 55px;
     }
 
+    .seo-content {
+  margin-top: 55px;
+  padding: 25px;
+  background: #10251b;
+  border: 1px solid #315d43;
+  border-radius: 17px;
+  color: #b3c8b9;
+  line-height: 1.7;
+}
+
+.seo-content h2,
+.seo-content h3 {
+  color: #f4f8f5;
+}
+
+.seo-content h2 {
+  font-size: 22px;
+  margin-top: 0;
+}
+
+.seo-content h3 {
+  font-size: 17px;
+  margin-bottom: 5px;
+}
+
+.seo-content p {
+  font-size: 14px;
+  margin-top: 5px;
+}
+
     @media (max-width: 750px) {
       .grid { grid-template-columns: repeat(2, 1fr); }
       header { margin-bottom: 35px; }
@@ -334,6 +362,48 @@
       <p id="noResults" class="hidden" style="text-align:center;color:#b3c8b9">
         No quizzes found.
       </p>
+      <section class="seo-content">
+  <h2 id="seoTitle">Explore Free Online Quiz Categories</h2>
+
+  <p id="seoIntro">
+    Welcome to R GAMES! Play free online quizzes, trivia games
+    and knowledge challenges. Choose your favourite topic and
+    test what you know.
+  </p>
+
+  <h3 id="seoNewYear">New Year and Christmas Quizzes</h3>
+  <p id="seoNewYearText">
+    Explore Christmas traditions, winter celebrations and New Year trivia.
+  </p>
+
+  <h3 id="seoStarWars">Star Wars Quizzes</h3>
+  <p id="seoStarWarsText">
+    Test your knowledge of the Star Wars galaxy, Jedi, Sith,
+    characters and spaceships.
+  </p>
+
+  <h3 id="seoMovies">Home Alone and Movie Quizzes</h3>
+  <p id="seoMoviesText">
+    Answer questions about Home Alone, famous films and movie characters.
+  </p>
+
+  <h3 id="seoCars">Cars and Supercars Quizzes</h3>
+  <p id="seoCarsText">
+    Discover trivia about Ferrari, Porsche, McLaren, racing
+    and automotive history.
+  </p>
+
+  <h3 id="seoArt">Art and Artists Quizzes</h3>
+  <p id="seoArtText">
+    Explore famous painters, masterpieces, museums and art history.
+  </p>
+
+  <h3 id="seoHistory">World History Quizzes</h3>
+  <p id="seoHistoryText">
+    Test your knowledge of ancient civilizations, historical
+    events and influential people.
+  </p>
+</section>
     </section>
 
     <section id="quiz" class="hidden">
@@ -518,7 +588,69 @@ let currentQuestions = [];
 function t(key) {
   return translations[lang][key];
 }
+function updateSeoContent() {
+  const content = {
+en: [
+  'Explore Free Online Quiz Categories',
+  'Welcome to R GAMES! Play free online quizzes, trivia games and knowledge challenges. Choose your favourite topic and test what you know.',
+  'New Year and Christmas Quizzes',
+  'Star Wars Quizzes',
+  'Home Alone and Movie Quizzes',
+  'Cars and Supercars Quizzes',
+  'Art and Artists Quizzes',
+  'World History Quizzes'
+],
+    ru: [
+      'Исследуй категории онлайн-викторин',
+      'Добро пожаловать в R GAMES! Играй в бесплатные онлайн-викторины, отвечай на вопросы и проверяй свои знания на разные темы.',
+      'Новогодние и рождественские викторины',
+      'Викторины по вселенной «Звёздных войн»',
+      'Викторины по фильму «Один дома» и кино',
+      'Викторины об автомобилях и суперкарах',
+      'Викторины об искусстве и художниках',
+      'Викторины по всемирной истории'
+    ]
+  };
 
+  const texts = {
+    en: [
+      'Explore Christmas traditions, winter celebrations and New Year trivia.',
+      'Test your knowledge of the Star Wars galaxy, Jedi, Sith, characters and spaceships.',
+      'Answer questions about Home Alone, famous films and movie characters.',
+      'Discover trivia about Ferrari, Porsche, McLaren, racing and automotive history.',
+      'Explore famous painters, masterpieces, museums and art history.',
+      'Test your knowledge of ancient civilizations, historical events and influential people.'
+    ],
+    ru: [
+      'Проверь свои знания о Рождестве, Новом годе, зимних традициях и праздниках.',
+      'Узнай, насколько хорошо ты знаешь галактику, джедаев, ситхов, персонажей и корабли Star Wars.',
+      'Ответь на вопросы о фильме «Один дома», известных фильмах и их героях.',
+      'Проверь знания о Ferrari, Porsche, McLaren, гонках и истории автомобилей.',
+      'Изучай творчество известных художников, картины, музеи и историю искусства.',
+      'Проверь знания о древних цивилизациях, исторических событиях и известных личностях.'
+    ]
+  };
+
+  const ids = [
+    'seoTitle', 'seoIntro', 'seoNewYear',
+    'seoStarWars', 'seoMovies', 'seoCars',
+    'seoArt', 'seoHistory'
+  ];
+
+  ids.forEach((id, i) => {
+    document.getElementById(id).textContent = content[lang][i];
+  });
+
+  const textIds = [
+    'seoNewYearText', 'seoStarWarsText',
+    'seoMoviesText', 'seoCarsText',
+    'seoArtText', 'seoHistoryText'
+  ];
+
+  textIds.forEach((id, i) => {
+    document.getElementById(id).textContent = texts[lang][i];
+  });
+}
 function toggleLanguage() {
   lang = lang === 'en' ? 'ru' : 'en';
   document.documentElement.lang = lang;
@@ -531,8 +663,12 @@ function toggleLanguage() {
   document.getElementById('retryBtn').textContent = t('retry');
   document.getElementById('homeBtn').textContent = t('home');
   renderCategories();
+  updateSeoContent();
 
-  if (!document.getElementById('quiz').classList.contains('hidden')) {
+    if (!document.getElementById('quiz').classList.contains('hidden')) {
+    document.getElementById('categoryName').textContent =
+      translations[lang].categories[currentCategory][0];
+
     renderQuestion();
   }
 }
@@ -805,6 +941,7 @@ function goHome() {
 }
 
 renderCategories();
+updateSeoContent();
 
 /* Snow animation */
 const canvas = document.getElementById('snow');
