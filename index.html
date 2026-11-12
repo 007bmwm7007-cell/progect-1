@@ -1,286 +1,449 @@
 
+
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RGames Quiz</title>
 
-<style>
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
+  <meta charset="UTF-8">
 
-body {
-    font-family: Arial, sans-serif;
-    background: #050806;
-    color: #f5f5f5;
-    min-height: 100vh;
-    overflow-x: hidden;
-}
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-#snow {
-    position: fixed;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 0;
-}
+  <meta name="theme-color" content="#071b13">
 
-.container {
-    position: relative;
-    z-index: 1;
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 35px 20px;
-}
+  <title>R GAMES — Quiz Challenge</title>
 
-header {
-    text-align: center;
-    margin-bottom: 35px;
-}
+  <meta name="description" content="Play free online quizzes about Star Wars, cars, Christmas, Home Alone, artists and world history. Test your knowledge with R GAMES!">
 
-.logo {
-    font-size: 34px;
-    font-weight: 800;
-    letter-spacing: 4px;
-}
+  <meta name="keywords" content="online quiz, free quiz, Star Wars quiz, car quiz, Christmas quiz, Home Alone quiz, world history quiz, викторина, квиз онлайн, игры">
 
-.logo span {
-    color: #e53945;
-}
+  <meta name="robots" content="index, follow">
 
-.subtitle {
-    color: #a8b5aa;
-    margin-top: 10px;
-    letter-spacing: 2px;
-    font-size: 12px;
-}
+  <link rel="canonical" href="https://007bmwm7007-cell.github.io/progect-1/">
 
-.panel {
-    background: rgba(13, 25, 18, 0.94);
-    border: 1px solid #294334;
-    border-radius: 18px;
-    padding: 28px;
-    box-shadow: 0 12px 40px rgba(0,0,0,.35);
-}
+  <meta property="og:title" content="R GAMES — Quiz Challenge">
 
-h1, h2 {
-    text-align: center;
-    margin-bottom: 18px;
-}
+  <meta property="og:description" content="Discover six quiz categories and test your knowledge!">
 
-.description {
-    text-align: center;
-    color: #b9c4bb;
-    line-height: 1.6;
-    margin-bottom: 25px;
-}
+  <meta property="og:type" content="website">
 
-.categories {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 14px;
-}
+  <meta property="og:url" content="https://007bmwm7007-cell.github.io/progect-1/">
 
-.category {
-    background: #14251a;
-    border: 1px solid #35523d;
-    color: white;
-    padding: 22px 15px;
-    border-radius: 12px;
-    cursor: pointer;
-    text-align: left;
-    transition: .2s;
-}
+  <style>
 
-.category:hover {
-    background: #203c29;
-    border-color: #e53945;
-    transform: translateY(-3px);
-}
+    * { box-sizing: border-box; }
 
-.category h3 {
-    font-size: 17px;
-    margin-bottom: 7px;
-}
+    body {
 
-.category p {
-    color: #aebbb0;
-    font-size: 12px;
-}
+      margin: 0;
 
-button {
-    font-family: inherit;
-}
+      min-height: 100vh;
 
-.primary-btn {
-    display: block;
-    width: 100%;
-    padding: 15px;
-    border: none;
-    border-radius: 10px;
-    background: #d93440;
-    color: white;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    margin-top: 20px;
-    transition: .2s;
-}
+      background: #07130f;
 
-.primary-btn:hover {
-    background: #f04753;
-}
+      color: #f4f8f5;
 
-.topbar {
-    display: flex;
-    justify-content: space-between;
-    gap: 12px;
-    align-items: center;
-    margin-bottom: 20px;
-    flex-wrap: wrap;
-}
+      font-family: Arial, sans-serif;
 
-.timer {
-    background: #30171a;
-    border: 1px solid #87333b;
-    color: #ff6873;
-    padding: 10px 15px;
-    border-radius: 9px;
-    font-weight: bold;
-    font-size: 18px;
-}
+      overflow-x: hidden;
 
-.progress {
-    color: #aebbb0;
-    font-size: 14px;
-}
+    }
 
-.progress-track {
-    height: 7px;
-    background: #26372b;
-    border-radius: 10px;
-    overflow: hidden;
-    margin-bottom: 25px;
-}
+    #snow {
 
-.progress-fill {
-    height: 100%;
-    width: 0%;
-    background: #d93440;
-    transition: width .3s;
-}
+      position: fixed;
 
-.question {
-    font-size: 22px;
-    line-height: 1.4;
-    margin-bottom: 24px;
-}
+      inset: 0;
 
-.answers {
-    display: grid;
-    gap: 12px;
-}
+      pointer-events: none;
 
-.answer {
-    background: #17291d;
-    color: white;
-    border: 1px solid #36513c;
-    border-radius: 10px;
-    padding: 16px;
-    text-align: left;
-    font-size: 15px;
-    cursor: pointer;
-    transition: .2s;
-}
+      z-index: 0;
 
-.answer:hover:not(:disabled) {
-    background: #25432d;
-    border-color: #6c9876;
-}
+    }
 
-.answer:disabled {
-    cursor: default;
-}
-
-.answer.correct {
-    background: #174b2b;
-    border-color: #36b45b;
-}
-
-.answer.wrong {
-    background: #501d23;
-    border-color: #e34b58;
-}
-
-.feedback {
-    min-height: 24px;
-    margin-top: 18px;
-    color: #c7d2c9;
-    line-height: 1.5;
-}
-
-.hidden {
-    display: none !important;
-}
-
-.result-score {
-    font-size: 48px;
-    font-weight: bold;
-    color: #e84a55;
-    text-align: center;
-    margin: 20px 0;
-}
-
-.result-message {
-    text-align: center;
-    color: #c2cec5;
-    line-height: 1.6;
-}
-
-.secondary-btn {
-    display: block;
-    width: 100%;
-    padding: 14px;
-    background: transparent;
-    color: white;
-    border: 1px solid #54705a;
-    border-radius: 10px;
-    cursor: pointer;
-    margin-top: 12px;
-    font-size: 15px;
-}
-
-.secondary-btn:hover {
-    background: #203c29;
-}
-
-@media (max-width: 600px) {
     .container {
-        padding: 22px 14px;
+
+      position: relative;
+
+      z-index: 1;
+
+      width: min(1100px, 92%);
+
+      margin: auto;
+
+      padding: 28px 0 55px;
+
     }
 
-    .panel {
-        padding: 20px 15px;
-    }
+    header {
 
-    .categories {
-        grid-template-columns: 1fr;
-    }
+      display: flex;
 
-    .question {
-        font-size: 19px;
+      justify-content: space-between;
+
+      align-items: center;
+
+      gap: 15px;
+
+      margin-bottom: 55px;
+
     }
 
     .logo {
-        font-size: 28px;
+
+      font-size: 28px;
+
+      font-weight: 900;
+
+      letter-spacing: 3px;
+
     }
-}
-</style>
+
+    .logo span { color: #d83d43; }
+
+    button, input { font: inherit; }
+
+    .lang-btn, .back-btn {
+
+      background: #173b2b;
+
+      border: 1px solid #3c7656;
+
+      color: white;
+
+      padding: 10px 17px;
+
+      border-radius: 10px;
+
+      cursor: pointer;
+
+    }
+
+    .hero {
+
+      text-align: center;
+
+      margin-bottom: 38px;
+
+    }
+
+    .hero h1 {
+
+      font-size: clamp(32px, 6vw, 55px);
+
+      margin: 0 0 12px;
+
+    }
+
+    .hero h1 span { color: #e44b50; }
+
+    .hero p {
+
+      color: #a9c0b1;
+
+      font-size: 16px;
+
+    }
+
+    .search-wrap {
+
+      max-width: 600px;
+
+      margin: 30px auto 35px;
+
+    }
+
+    .search {
+
+      width: 100%;
+
+      padding: 17px 20px;
+
+      border-radius: 13px;
+
+      border: 1px solid #376b4e;
+
+      background: #10251b;
+
+      color: white;
+
+      outline: none;
+
+      font-size: 16px;
+
+    }
+
+    .search:focus { border-color: #65b77d; }
+
+    .grid {
+
+      display: grid;
+
+      grid-template-columns: repeat(3, 1fr);
+
+      gap: 18px;
+
+    }
+
+    .category {
+
+      background: linear-gradient(145deg, #173c2b, #10251b);
+
+      border: 1px solid #315d43;
+
+      border-radius: 17px;
+
+      padding: 25px;
+
+      min-height: 165px;
+
+      cursor: pointer;
+
+      transition: .2s;
+
+    }
+
+    .category:hover {
+
+      transform: translateY(-5px);
+
+      border-color: #77bd88;
+
+      background: #1b4932;
+
+    }
+
+    .category h2 {
+
+      margin: 0 0 12px;
+
+      font-size: 21px;
+
+    }
+
+    .category p {
+
+      color: #b3c8b9;
+
+      line-height: 1.5;
+
+      margin: 0;
+
+      font-size: 14px;
+
+    }
+
+    .category .number {
+
+      color: #e45a5e;
+
+      font-size: 12px;
+
+      margin-top: 17px;
+
+      font-weight: bold;
+
+    }
+
+    .hidden { display: none !important; }
+
+    #quiz, #result {
+
+      max-width: 700px;
+
+      margin: auto;
+
+      background: #10251b;
+
+      border: 1px solid #376b4e;
+
+      border-radius: 18px;
+
+      padding: 28px;
+
+    }
+
+    .quiz-top {
+
+      display: flex;
+
+      justify-content: space-between;
+
+      gap: 12px;
+
+      color: #b9d0c0;
+
+      margin-bottom: 20px;
+
+      font-size: 14px;
+
+    }
+
+    .progress {
+
+      height: 7px;
+
+      background: #263b30;
+
+      border-radius: 10px;
+
+      overflow: hidden;
+
+      margin-bottom: 25px;
+
+    }
+
+    .progress-fill {
+
+      height: 100%;
+
+      background: #d94148;
+
+      width: 0%;
+
+      transition: .3s;
+
+    }
+
+    #question {
+
+      font-size: 25px;
+
+      line-height: 1.4;
+
+      margin-bottom: 25px;
+
+    }
+
+    .answers {
+
+      display: grid;
+
+      gap: 12px;
+
+    }
+
+    .answer {
+
+      text-align: left;
+
+      padding: 16px;
+
+      border-radius: 11px;
+
+      border: 1px solid #42664e;
+
+      background: #193a29;
+
+      color: white;
+
+      cursor: pointer;
+
+      transition: .15s;
+
+    }
+
+    .answer:hover:not(:disabled) { background: #28533a; }
+
+    .answer:disabled { cursor: default; opacity: .9; }
+
+    .answer.correct { background: #17643a; border-color: #5acb83; }
+
+    .answer.wrong { background: #722d32; border-color: #e45b62; }
+
+    #feedback {
+
+      min-height: 26px;
+
+      margin: 18px 0;
+
+      color: #c4d8c9;
+
+    }
+
+    .main-btn {
+
+      background: #d94148;
+
+      border: none;
+
+      color: white;
+
+      padding: 14px 24px;
+
+      border-radius: 10px;
+
+      cursor: pointer;
+
+      font-weight: bold;
+
+      margin-top: 10px;
+
+    }
+
+    .main-btn:hover { background: #ef555b; }
+
+    #result { text-align: center; }
+
+    #result h2 { font-size: 32px; }
+
+    #score {
+
+      font-size: 45px;
+
+      color: #e34c53;
+
+      font-weight: bold;
+
+    }
+
+    .footer {
+
+      text-align: center;
+
+      color: #718b79;
+
+      font-size: 12px;
+
+      margin-top: 55px;
+
+    }
+
+    @media (max-width: 750px) {
+
+      .grid { grid-template-columns: repeat(2, 1fr); }
+
+      header { margin-bottom: 35px; }
+
+    }
+
+    @media (max-width: 480px) {
+
+      .grid { grid-template-columns: 1fr; }
+
+      .category { min-height: 130px; }
+
+      #quiz, #result { padding: 20px; }
+
+      #question { font-size: 21px; }
+
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+      *, *::before, *::after {
+
+        scroll-behavior: auto !important;
+
+        transition: none !important;
+
+      }
+
+    }
+
+  </style>
+
 </head>
 
 <body>
@@ -289,634 +452,972 @@ button {
 
 <div class="container">
 
-<header>
-    <div class="logo">R<span>G</span>AMES</div>
-    <div class="subtitle">QUIZ CHALLENGE · WINTER EDITION</div>
-</header>
+  <header>
 
-<section id="menu" class="panel">
-    <h1>Choose Your Quiz</h1>
-    <p class="description">
-        Select a category and test your knowledge.
-        You have 5 minutes to answer 10 questions.
-    </p>
+    <div class="logo">R <span>GAMES</span></div>
 
-    <div class="categories" id="categories"></div>
-</section>
+    <button class="lang-btn" id="langBtn" onclick="toggleLanguage()">RU</button>
 
-<section id="game" class="panel hidden">
+  </header>
 
-    <div class="topbar">
-        <div class="progress" id="progress">Question 1 / 10</div>
-        <div class="timer" id="timer">05:00</div>
-    </div>
+  <main>
 
-    <div class="progress-track">
-        <div class="progress-fill" id="progressFill"></div>
-    </div>
+    <section id="home">
 
-    <h2 id="categoryTitle"></h2>
+      <div class="hero">
 
-    <div class="question" id="question"></div>
+        <h1 id="heroTitle">QUIZ <span>CHALLENGE</span></h1>
 
-    <div class="answers" id="answers"></div>
+        <p id="heroText">Choose a category, test your knowledge and beat your score.</p>
 
-    <div class="feedback" id="feedback"></div>
+      </div>
 
-    <button class="primary-btn hidden" id="nextBtn">
-        Next Question
-    </button>
+      <div class="search-wrap">
 
-</section>
+        <input
 
-<section id="result" class="panel hidden">
-    <h1>Quiz Completed</h1>
+          class="search"
 
-    <div class="result-score" id="score">0 / 10</div>
+          id="search"
 
-    <p class="result-message" id="resultMessage"></p>
+          type="search"
 
-    <button class="primary-btn" onclick="showMenu()">
-        Choose Another Category
-    </button>
+          placeholder="Search quizzes..."
 
-    <button class="secondary-btn" onclick="restartQuiz()">
-        Try Again
-    </button>
-</section>
+          autocomplete="off"
+
+        >
+
+      </div>
+
+      <div class="grid" id="categories"></div>
+
+      <p id="noResults" class="hidden" style="text-align:center;color:#b3c8b9">
+
+        No quizzes found.
+
+      </p>
+
+    </section>
+
+    <section id="quiz" class="hidden">
+
+      <div class="quiz-top">
+
+        <span id="categoryName"></span>
+
+        <span id="counter"></span>
+
+        <span id="timer"></span>
+
+      </div>
+
+      <div class="progress">
+
+        <div class="progress-fill" id="progress"></div>
+
+      </div>
+
+      <h2 id="question"></h2>
+
+      <div class="answers" id="answers"></div>
+
+      <div id="feedback"></div>
+
+      <button class="main-btn hidden" id="nextBtn" onclick="nextQuestion()">
+
+        Next question
+
+      </button>
+
+    </section>
+
+    <section id="result" class="hidden">
+
+      <h2 id="resultTitle">Quiz completed!</h2>
+
+      <p id="resultDescription">Your result:</p>
+
+      <div id="score">0/10</div>
+
+      <p id="resultMessage"></p>
+
+      <button class="main-btn" onclick="restartQuiz()" id="retryBtn">
+
+        Try again
+
+      </button>
+
+      <br>
+
+      <button class="back-btn" onclick="goHome()" id="homeBtn" style="margin-top:15px">
+
+        Back to categories
+
+      </button>
+
+    </section>
+
+  </main>
+
+  <div class="footer">R GAMES · QUIZ CHALLENGE</div>
 
 </div>
 
 <script>
-const quizData = {
 
-    "New Year": [
-        {
-            q: "On which date is New Year's Eve celebrated?",
-            a: ["December 24", "December 31", "January 1", "January 6"],
-            c: 1
-        },
-        {
-            q: "Which plant is traditionally associated with Christmas?",
-            a: ["Cactus", "Sunflower", "Mistletoe", "Tulip"],
-            c: 2
-        },
-        {
-            q: "Where did the tradition of decorating Christmas trees become popular?",
-            a: ["Germany", "Italy", "Spain", "Japan"],
-            c: 0
-        },
-        {
-            q: "What is traditionally placed at the top of a Christmas tree?",
-            a: ["A bell", "A star", "A candle", "A ribbon"],
-            c: 1
-        },
-        {
-            q: "Which reindeer is famous for having a red nose?",
-            a: ["Dasher", "Comet", "Rudolph", "Blitzen"],
-            c: 2
-        },
-        {
-            q: "How many days are there in a leap year?",
-            a: ["364", "365", "366", "367"],
-            c: 2
-        },
-        {
-            q: "Which city is famous for its New Year's Eve ball drop?",
-            a: ["London", "New York", "Paris", "Berlin"],
-            c: 1
-        },
-        {
-            q: "What is the traditional color of Santa Claus's suit?",
-            a: ["Blue", "Green", "Red", "Black"],
-            c: 2
-        },
-        {
-            q: "Which month comes immediately before January?",
-            a: ["October", "November", "December", "February"],
-            c: 2
-        },
-        {
-            q: "What do people traditionally make at the beginning of a new year?",
-            a: ["New Year's resolutions", "Birthday cards", "Travel tickets", "Shopping lists"],
-            c: 0
-        }
-    ],
+const translations = {
 
-    "Star Wars": [
-        {
-            q: "Who is Luke Skywalker's father?",
-            a: ["Obi-Wan Kenobi", "Darth Vader", "Yoda", "Han Solo"],
-            c: 1
-        },
-        {
-            q: "What is the name of Han Solo's ship?",
-            a: ["X-wing", "Slave I", "Millennium Falcon", "TIE Fighter"],
-            c: 2
-        },
-        {
-            q: "Which color is Mace Windu's lightsaber?",
-            a: ["Blue", "Green", "Red", "Purple"],
-            c: 3
-        },
-        {
-            q: "What species is Chewbacca?",
-            a: ["Ewok", "Wookiee", "Twi'lek", "Gungan"],
-            c: 1
-        },
-        {
-            q: "Who trained Anakin Skywalker as a Jedi?",
-            a: ["Qui-Gon Jinn", "Mace Windu", "Obi-Wan Kenobi", "Yoda"],
-            c: 2
-        },
-        {
-            q: "What is the name of the small green Jedi Master?",
-            a: ["Grogu", "Yoda", "Wicket", "Jabba"],
-            c: 1
-        },
-        {
-            q: "Which planet is the homeworld of the Wookiees?",
-            a: ["Tatooine", "Naboo", "Kashyyyk", "Hoth"],
-            c: 2
-        },
-        {
-            q: "What is the name of the desert planet where Luke grew up?",
-            a: ["Mustafar", "Tatooine", "Endor", "Kamino"],
-            c: 1
-        },
-        {
-            q: "Who is the Emperor of the Galactic Empire?",
-            a: ["Grand Moff Tarkin", "Count Dooku", "Palpatine", "Thrawn"],
-            c: 2
-        },
-        {
-            q: "What is the name of the droid that accompanies Luke?",
-            a: ["C-3PO", "BB-8", "R2-D2", "K-2SO"],
-            c: 2
-        }
-    ],
+  en: {
 
-    "Home Alone": [
-        {
-            q: "What is the first name of the boy left home alone?",
-            a: ["Buzz", "Kevin", "Fuller", "Jeff"],
-            c: 1
-        },
-        {
-            q: "Where does Kevin's family travel for Christmas?",
-            a: ["London", "Rome", "Paris", "New York"],
-            c: 2
-        },
-        {
-            q: "What are the names of the two burglars?",
-            a: ["Harry and Marv", "Tom and Jerry", "Jack and Mike", "Fred and George"],
-            c: 0
-        },
-        {
-            q: "What is the name of Kevin's older brother?",
-            a: ["Fuller", "Buzz", "Mitch", "Peter"],
-            c: 1
-        },
-        {
-            q: "Which actor plays Kevin McCallister?",
-            a: ["Daniel Stern", "Joe Pesci", "Macaulay Culkin", "John Candy"],
-            c: 2
-        },
-        {
-            q: "What does Kevin use to make it look like a party is happening?",
-            a: ["Dolls and mannequins", "Robots", "Cardboard animals", "Mirrors"],
-            c: 0
-        },
-        {
-            q: "What is the name of Kevin's mother?",
-            a: ["Kate", "Leslie", "Megan", "Sarah"],
-            c: 0
-        },
-        {
-            q: "What is the title of the fictional gangster movie Kevin watches?",
-            a: ["Angels with Dirty Faces", "Angels with Filthy Souls", "The Dirty Gang", "Gangster Holiday"],
-            c: 1
-        },
-        {
-            q: "Which city is Kevin's family home located near?",
-            a: ["Chicago", "Boston", "Los Angeles", "Seattle"],
-            c: 0
-        },
-        {
-            q: "What does Kevin famously say after putting aftershave on his face?",
-            a: ["I'm too old for this!", "Keep the change, ya filthy animal!", "Ahhh!", "Merry Christmas!"],
-            c: 2
-        }
-    ],
+    hero: 'QUIZ <span>CHALLENGE</span>',
 
-    "Cars": [
-        {
-            q: "Which company manufactures the Ferrari F40?",
-            a: ["Lamborghini", "Ferrari", "Porsche", "McLaren"],
-            c: 1
-        },
-        {
-            q: "In which year was the McLaren F1 introduced?",
-            a: ["1989", "1992", "1996", "2001"],
-            c: 1
-        },
-        {
-            q: "Which country is Lamborghini from?",
-            a: ["Germany", "France", "Italy", "United Kingdom"],
-            c: 2
-        },
-        {
-            q: "What engine layout does the original McLaren F1 use?",
-            a: ["Front-mounted V8", "Mid-mounted V12", "Rear-mounted flat-six", "Front-mounted V12"],
-            c: 1
-        },
-        {
-            q: "Which car is known as the Godzilla of Japanese performance cars?",
-            a: ["Toyota Supra", "Mazda RX-7", "Nissan Skyline GT-R", "Honda NSX"],
-            c: 2
-        },
-        {
-            q: "Which company produces the 911?",
-            a: ["BMW", "Porsche", "Audi", "Mercedes-Benz"],
-            c: 1
-        },
-        {
-            q: "What is the top speed of the original Bugatti Veyron approximately?",
-            a: ["250 km/h", "300 km/h", "407 km/h", "500 km/h"],
-            c: 2
-        },
-        {
-            q: "Which car manufacturer created the Miura?",
-            a: ["Ferrari", "Maserati", "Lamborghini", "Pagani"],
-            c: 2
-        },
-        {
-            q: "What does GT-R stand for in Nissan's name?",
-            a: ["Grand Touring Racing", "Grand Touring Racer", "German Touring Roadster", "Grand Track Rally"],
-            c: 1
-        },
-        {
-            q: "Which car was famously featured in Back to the Future?",
-            a: ["Ferrari Testarossa", "DeLorean DMC-12", "Porsche 928", "Lamborghini Countach"],
-            c: 1
-        }
-    ],
+    intro: 'Choose a category, test your knowledge and beat your score.',
 
-    "Artists": [
-        {
-            q: "Who painted the Mona Lisa?",
-            a: ["Vincent van Gogh", "Pablo Picasso", "Leonardo da Vinci", "Claude Monet"],
-            c: 2
-        },
-        {
-            q: "Which artist painted The Starry Night?",
-            a: ["Claude Monet", "Vincent van Gogh", "Salvador Dalí", "Rembrandt"],
-            c: 1
-        },
-        {
-            q: "Who painted The Persistence of Memory?",
-            a: ["Salvador Dalí", "Pablo Picasso", "Michelangelo", "Edvard Munch"],
-            c: 0
-        },
-        {
-            q: "Which artist painted the ceiling of the Sistine Chapel?",
-            a: ["Raphael", "Donatello", "Michelangelo", "Botticelli"],
-            c: 2
-        },
-        {
-            q: "Who created the painting Guernica?",
-            a: ["Pablo Picasso", "Henri Matisse", "Vincent van Gogh", "Paul Cézanne"],
-            c: 0
-        },
-        {
-            q: "Which artist is associated with Impressionism and water lilies?",
-            a: ["Claude Monet", "Caravaggio", "Francisco Goya", "Andy Warhol"],
-            c: 0
-        },
-        {
-            q: "Who painted The Scream?",
-            a: ["Edvard Munch", "Gustav Klimt", "Paul Gauguin", "Édouard Manet"],
-            c: 0
-        },
-        {
-            q: "Which artist is famous for Campbell's Soup Cans?",
-            a: ["Jackson Pollock", "Andy Warhol", "Banksy", "Roy Lichtenstein"],
-            c: 1
-        },
-        {
-            q: "Who sculpted the famous statue David?",
-            a: ["Bernini", "Michelangelo", "Rodin", "Donatello"],
-            c: 1
-        },
-        {
-            q: "Which art movement is Salvador Dalí most associated with?",
-            a: ["Cubism", "Surrealism", "Impressionism", "Baroque"],
-            c: 1
-        }
-    ],
+    search: 'Search quizzes...',
 
-    "World History": [
-        {
-            q: "In which year did World War II end?",
-            a: ["1943", "1944", "1945", "1946"],
-            c: 2
-        },
-        {
-            q: "Which ancient civilization built the pyramids at Giza?",
-            a: ["Romans", "Greeks", "Ancient Egyptians", "Persians"],
-            c: 2
-        },
-        {
-            q: "Who was the first President of the United States?",
-            a: ["Abraham Lincoln", "George Washington", "Thomas Jefferson", "John Adams"],
-            c: 1
-        },
-        {
-            q: "In which year did the French Revolution begin?",
-            a: ["1776", "1789", "1812", "1848"],
-            c: 1
-        },
-        {
-            q: "Which city was the capital of the Byzantine Empire?",
-            a: ["Rome", "Athens", "Constantinople", "Alexandria"],
-            c: 2
-        },
-        {
-            q: "Who was the first human to travel into space?",
-            a: ["Neil Armstrong", "Yuri Gagarin", "Alan Shepard", "John Glenn"],
-            c: 1
-        },
-        {
-            q: "Which empire was ruled by Julius Caesar?",
-            a: ["Ottoman Empire", "Roman Republic", "Mongol Empire", "Persian Empire"],
-            c: 1
-        },
-        {
-            q: "In which year did the Berlin Wall fall?",
-            a: ["1985", "1987", "1989", "1991"],
-            c: 2
-        },
-        {
-            q: "Which explorer reached the Americas in 1492?",
-            a: ["Ferdinand Magellan", "Christopher Columbus", "Vasco da Gama", "James Cook"],
-            c: 1
-        },
-        {
-            q: "Which civilization developed democracy in ancient times?",
-            a: ["Ancient Athens", "Ancient Egypt", "The Maya", "The Sumerians"],
-            c: 0
-        }
+    noResults: 'No quizzes found.',
+
+    next: 'Next question',
+
+    retry: 'Try again',
+
+    home: 'Back to categories',
+
+    completed: 'Quiz completed!',
+
+    yourResult: 'Your result:',
+
+    correct: 'Correct answer!',
+
+    wrong: 'Not quite! The correct answer is:',
+
+    timeUp: 'Time is up! The correct answer is:',
+
+    excellent: 'Excellent result!',
+
+    good: 'Well done!',
+
+    practice: 'Good try! Keep practising!',
+
+    question: 'Question',
+
+    seconds: 'sec',
+
+    categories: [
+
+      ['New Year', 'Christmas, winter traditions and celebrations', 'new year christmas winter holiday'],
+
+      ['Star Wars', 'A galaxy far, far away', 'star wars jedi sith skywalker'],
+
+      ['Home Alone', 'The famous Christmas movie', 'home alone kevin mccall movie'],
+
+      ['Cars', 'Supercars, racing and automotive history', 'cars ferrari porsche mclaren racing'],
+
+      ['Artists', 'Famous painters and their masterpieces', 'artists painting art picasso da vinci'],
+
+      ['World History', 'Events and people that shaped our world', 'world history ancient rome egypt history']
+
     ]
+
+  },
+
+  ru: {
+
+    hero: 'МИР <span>ВИКТОРИН</span>',
+
+    intro: 'Выбирай категорию, проверяй свои знания и набирай очки.',
+
+    search: 'Поиск викторин...',
+
+    noResults: 'Ничего не найдено.',
+
+    next: 'Следующий вопрос',
+
+    retry: 'Попробовать снова',
+
+    home: 'Назад к категориям',
+
+    completed: 'Викторина завершена!',
+
+    yourResult: 'Твой результат:',
+
+    correct: 'Правильный ответ!',
+
+    wrong: 'Не совсем! Правильный ответ:',
+
+    timeUp: 'Время вышло! Правильный ответ:',
+
+    excellent: 'Превосходный результат!',
+
+    good: 'Отличная работа!',
+
+    practice: 'Хорошая попытка! Продолжай тренироваться!',
+
+    question: 'Вопрос',
+
+    seconds: 'сек.',
+
+    categories: [
+
+      ['Новый год', 'Рождество, зимние традиции и праздники', 'новый год рождество зима праздник'],
+
+      ['Звёздные войны', 'Далёкая-далёкая галактика', 'звёздные войны джедаи ситхи скайуокер'],
+
+      ['Один дома', 'Знаменитый рождественский фильм', 'один дома кевин фильм маккалистер'],
+
+      ['Автомобили', 'Суперкары, гонки и история автомобилей', 'автомобили феррари порше макларен гонки'],
+
+      ['Художники', 'Знаменитые живописцы и их шедевры', 'художники живопись искусство да винчи'],
+
+      ['Всемирная история', 'События и люди, изменившие мир', 'всемирная история древний рим египет']
+
+    ]
+
+  }
+
 };
 
-const menu = document.getElementById("menu");
-const game = document.getElementById("game");
-const result = document.getElementById("result");
+const quizzes = [
 
-const categories = document.getElementById("categories");
-const questionEl = document.getElementById("question");
-const answersEl = document.getElementById("answers");
-const timerEl = document.getElementById("timer");
-const progressEl = document.getElementById("progress");
-const progressFill = document.getElementById("progressFill");
-const feedbackEl = document.getElementById("feedback");
-const nextBtn = document.getElementById("nextBtn");
+  [
 
-let currentCategory = "";
-let questions = [];
+    ['Which date is New Year celebrated on in many countries?', ['December 31', 'December 24', 'January 7', 'February 1'], 0],
+
+    ['Which plant is traditionally associated with Christmas?', ['Oak', 'Fir tree', 'Cactus', 'Bamboo'], 1],
+
+    ['Where did the tradition of decorated Christmas trees become popular?', ['Germany', 'Brazil', 'Japan', 'Egypt'], 0],
+
+    ['What do people traditionally count down to?', ['Sunrise', 'Midnight', 'Lunch', 'Sunset'], 1],
+
+    ['Which reindeer is famous for its red nose?', ['Dasher', 'Rudolph', 'Comet', 'Blitzen'], 1],
+
+    ['Which month begins the year?', ['March', 'January', 'December', 'April'], 1],
+
+    ['What is traditionally placed at the top of a Christmas tree?', ['A star', 'A bell', 'A candle', 'A book'], 0],
+
+    ['Which season is December in in the Northern Hemisphere?', ['Summer', 'Spring', 'Winter', 'Autumn'], 2],
+
+    ['What do people often exchange during the holidays?', ['Gifts', 'Keys', 'Tickets', 'Maps'], 0],
+
+    ['How many months are in a year?', ['10', '11', '12', '13'], 2]
+
+  ],
+
+  [
+
+    ['What is the name of Luke Skywalker’s home planet?', ['Tatooine', 'Hoth', 'Endor', 'Naboo'], 0],
+
+    ['What colour is Yoda’s lightsaber?', ['Blue', 'Green', 'Red', 'Purple'], 1],
+
+    ['Who is Luke Skywalker’s father?', ['Obi-Wan Kenobi', 'Han Solo', 'Darth Vader', 'Palpatine'], 2],
+
+    ['What is the name of Han Solo’s ship?', ['X-wing', 'Millennium Falcon', 'Star Destroyer', 'TIE Fighter'], 1],
+
+    ['What species is Chewbacca?', ['Ewok', 'Wookiee', 'Twi’lek', 'Rodian'], 1],
+
+    ['Who trained Luke on Dagobah?', ['Yoda', 'Mace Windu', 'Qui-Gon Jinn', 'Dooku'], 0],
+
+    ['What is the weapon of the Jedi?', ['Blaster', 'Lightsaber', 'Bow', 'Spear'], 1],
+
+    ['What is Princess Leia’s home planet?', ['Alderaan', 'Coruscant', 'Kashyyyk', 'Mustafar'], 0],
+
+    ['Who is the Emperor in the original trilogy?', ['Palpatine', 'Tarkin', 'Jabba', 'Thrawn'], 0],
+
+    ['What is the name of Boba Fett’s father?', ['Jango Fett', 'Darth Maul', 'Count Dooku', 'Greedo'], 0]
+
+  ],
+
+  [
+
+    ['What is Kevin’s surname?', ['McCallister', 'Murphy', 'Duncan', 'Smith'], 0],
+
+    ['Where does Kevin’s family travel?', ['Paris', 'London', 'Rome', 'Madrid'], 0],
+
+    ['What is the name of the two burglars?', ['Harry and Marv', 'Tom and Jerry', 'Mike and Joe', 'Ben and Sam'], 0],
+
+    ['In which city does the film take place?', ['New York', 'Chicago', 'Boston', 'Los Angeles'], 1],
+
+    ['What does Kevin use to scare the burglars?', ['A movie', 'A radio', 'A phone', 'A camera'], 0],
+
+    ['Who plays Kevin?', ['Macaulay Culkin', 'Daniel Radcliffe', 'Elijah Wood', 'Tom Holland'], 0],
+
+    ['What holiday is the film associated with?', ['Halloween', 'Christmas', 'Easter', 'New Year only'], 1],
+
+    ['What is Kevin’s older brother’s name?', ['Buzz', 'Fuller', 'Jeff', 'Mitch'], 0],
+
+    ['Where does Kevin’s family live?', ['A large house', 'A hotel', 'An apartment', 'A cabin'], 0],
+
+    ['What does Kevin famously say?', ['Keep the change!', 'I am Batman!', 'Run away!', 'Hello there!'], 0]
+
+  ],
+
+  [
+
+    ['Which company makes the Ferrari F40?', ['Ferrari', 'Porsche', 'Lamborghini', 'McLaren'], 0],
+
+    ['Where is Ferrari based?', ['Italy', 'Germany', 'France', 'Japan'], 0],
+
+    ['Which car is famous for its gull-wing doors?', ['DeLorean DMC-12', 'Toyota Supra', 'Mazda RX-7', 'Ferrari F40'], 0],
+
+    ['Which company created the McLaren F1?', ['McLaren', 'Ford', 'BMW', 'Honda'], 0],
+
+    ['What does ABS help prevent?', ['Wheel lock-up', 'Engine overheating', 'Fuel leakage', 'Tyre wear'], 0],
+
+    ['Which country is Porsche from?', ['Germany', 'Italy', 'USA', 'Sweden'], 0],
+
+    ['What type of engine does a typical V8 have?', ['Eight cylinders', 'Six cylinders', 'Four cylinders', 'Ten cylinders'], 0],
+
+    ['Which car is associated with the film Back to the Future?', ['DeLorean', 'Ferrari F40', 'Porsche 911', 'Ford GT'], 0],
+
+    ['Which brand makes the Mustang?', ['Ford', 'Chevrolet', 'Dodge', 'Nissan'], 0],
+
+    ['What is the Nürburgring?', ['A race circuit', 'A car company', 'A car model', 'A museum'], 0]
+
+  ],
+
+  [
+
+    ['Who painted the Mona Lisa?', ['Leonardo da Vinci', 'Van Gogh', 'Picasso', 'Monet'], 0],
+
+    ['Who painted The Starry Night?', ['Vincent van Gogh', 'Claude Monet', 'Salvador Dalí', 'Rembrandt'], 0],
+
+    ['Which artist is associated with Cubism?', ['Pablo Picasso', 'Michelangelo', 'Raphael', 'Turner'], 0],
+
+    ['Who painted the ceiling of the Sistine Chapel?', ['Michelangelo', 'Leonardo da Vinci', 'Caravaggio', 'Goya'], 0],
+
+    ['Which artist painted Water Lilies?', ['Claude Monet', 'Edvard Munch', 'Picasso', 'Dürer'], 0],
+
+    ['Who created The Persistence of Memory?', ['Salvador Dalí', 'Van Gogh', 'Monet', 'Klimt'], 0],
+
+    ['Which artist painted The Scream?', ['Edvard Munch', 'Rembrandt', 'Raphael', 'Vermeer'], 0],
+
+    ['What is a sculpture?', ['A three-dimensional artwork', 'A type of poem', 'A musical instrument', 'A photograph'], 0],
+
+    ['Which art movement is associated with Claude Monet?', ['Impressionism', 'Cubism', 'Surrealism', 'Baroque'], 0],
+
+    ['Who painted Girl with a Pearl Earring?', ['Johannes Vermeer', 'Rembrandt', 'Picasso', 'Dalí'], 0]
+
+  ],
+
+  [
+
+    ['Which civilization built the pyramids at Giza?', ['Ancient Egyptians', 'Romans', 'Greeks', 'Persians'], 0],
+
+    ['Who was the first Roman emperor?', ['Augustus', 'Julius Caesar', 'Nero', 'Trajan'], 0],
+
+    ['In which year did World War II end?', ['1945', '1939', '1918', '1950'], 0],
+
+    ['Which city was the capital of the Byzantine Empire?', ['Constantinople', 'Athens', 'Rome', 'Alexandria'], 0],
+
+    ['Who was the first person to walk on the Moon?', ['Neil Armstrong', 'Yuri Gagarin', 'Buzz Aldrin', 'John Glenn'], 0],
+
+    ['Which ancient city was buried by Mount Vesuvius?', ['Pompeii', 'Sparta', 'Carthage', 'Troy'], 0],
+
+    ['Which document was signed in 1215 in England?', ['Magna Carta', 'Declaration of Independence', 'Treaty of Versailles', 'Bill of Rights'], 0],
+
+    ['Who was the first president of the United States?', ['George Washington', 'Abraham Lincoln', 'Thomas Jefferson', 'John Adams'], 0],
+
+    ['Which empire was ruled by Genghis Khan?', ['Mongol Empire', 'Roman Empire', 'Ottoman Empire', 'Mali Empire'], 0],
+
+    ['In which year did the Berlin Wall fall?', ['1989', '1975', '1995', '1961'], 0]
+
+  ]
+
+];
+
+let lang = 'en';
+
+let currentCategory = 0;
+
 let currentQuestion = 0;
+
 let score = 0;
-let timeLeft = 300;
-let timerInterval = null;
+
+let timer = null;
+
+let timeLeft = 20;
+
 let answered = false;
 
-function createMenu() {
-    categories.innerHTML = "";
+let currentQuestions = [];
 
-    Object.keys(quizData).forEach(category => {
-        const button = document.createElement("button");
-        button.className = "category";
+function t(key) {
 
-        button.innerHTML = `
-            <h3>${category}</h3>
-            <p>10 questions · 5 minutes</p>
-        `;
+  return translations[lang][key];
 
-        button.addEventListener("click", () => startQuiz(category));
-        categories.appendChild(button);
-    });
 }
 
-function startQuiz(category) {
-    currentCategory = category;
-    questions = quizData[category];
-    currentQuestion = 0;
-    score = 0;
-    timeLeft = 300;
+function toggleLanguage() {
 
-    menu.classList.add("hidden");
-    result.classList.add("hidden");
-    game.classList.remove("hidden");
+  lang = lang === 'en' ? 'ru' : 'en';
 
-    document.getElementById("categoryTitle").textContent = category;
+  document.documentElement.lang = lang;
 
-    clearInterval(timerInterval);
+  document.getElementById('langBtn').textContent = lang === 'en' ? 'RU' : 'EN';
+
+  document.getElementById('heroTitle').innerHTML = t('hero');
+
+  document.getElementById('heroText').textContent = t('intro');
+
+  document.getElementById('search').placeholder = t('search');
+
+  document.getElementById('noResults').textContent = t('noResults');
+
+  document.getElementById('nextBtn').textContent = t('next');
+
+  document.getElementById('retryBtn').textContent = t('retry');
+
+  document.getElementById('homeBtn').textContent = t('home');
+
+  renderCategories();
+
+  if (!document.getElementById('quiz').classList.contains('hidden')) {
+
+    renderQuestion();
+
+  }
+
+}
+
+function renderCategories() {
+
+  const grid = document.getElementById('categories');
+
+  grid.innerHTML = '';
+
+  translations[lang].categories.forEach((category, index) => {
+
+    const card = document.createElement('div');
+
+    card.className = 'category';
+
+    card.dataset.search = (category.join(' ') + ' ' + translations[lang === 'en' ? 'ru' : 'en'].categories[index].join(' ')).toLowerCase();
+
+    const title = document.createElement('h2');
+
+    title.textContent = category[0];
+
+    const description = document.createElement('p');
+
+    description.textContent = category[1];
+
+    const number = document.createElement('div');
+
+    number.className = 'number';
+
+    number.textContent = '10 QUESTIONS';
+
+    card.append(title, description, number);
+
+    card.addEventListener('click', () => startQuiz(index));
+
+    grid.appendChild(card);
+
+  });
+
+  filterCategories();
+
+}
+
+function filterCategories() {
+
+  const query = document.getElementById('search').value.trim().toLowerCase();
+
+  let visible = 0;
+
+  document.querySelectorAll('.category').forEach(card => {
+
+    const match = card.dataset.search.includes(query);
+
+    card.classList.toggle('hidden', !match);
+
+    if (match) visible++;
+
+  });
+
+  document.getElementById('noResults').classList.toggle('hidden', visible > 0);
+
+}
+
+document.getElementById('search').addEventListener('input', filterCategories);
+
+function startQuiz(index) {
+
+  currentCategory = index;
+
+  currentQuestion = 0;
+
+  score = 0;
+
+  currentQuestions = quizzes[index].map(q => ({
+
+    question: q[0],
+
+    answers: q[1].map((answer, i) => ({ text: answer, correct: i === q[2] })),
+
+  }));
+
+  const ruQuestions = [
+
+    [
+
+      ['В какой день во многих странах празднуют Новый год?', ['31 декабря', '24 декабря', '7 января', '1 февраля'], 0],
+
+      ['Какое растение традиционно связано с Рождеством?', ['Дуб', 'Пихта', 'Кактус', 'Бамбук'], 1],
+
+      ['В какой стране стала популярной традиция украшать рождественскую ёлку?', ['Германия', 'Бразилия', 'Япония', 'Египет'], 0],
+
+      ['До какого момента люди обычно ведут обратный отсчёт?', ['Восход солнца', 'Полночь', 'Обед', 'Закат'], 1],
+
+      ['Какой олень известен своим красным носом?', ['Дэшер', 'Рудольф', 'Комета', 'Блитцен'], 1],
+
+      ['Какой месяц начинает год?', ['Март', 'Январь', 'Декабрь', 'Апрель'], 1],
+
+      ['Что традиционно ставят на верхушку ёлки?', ['Звезду', 'Колокольчик', 'Свечу', 'Книгу'], 0],
+
+      ['Какое время года в декабре в Северном полушарии?', ['Лето', 'Весна', 'Зима', 'Осень'], 2],
+
+      ['Чем люди часто обмениваются на праздники?', ['Подарками', 'Ключами', 'Билетами', 'Картами'], 0],
+
+      ['Сколько месяцев в году?', ['10', '11', '12', '13'], 2]
+
+    ],
+
+    [
+
+      ['Как называется родная планета Люка Скайуокера?', ['Татуин', 'Хот', 'Эндор', 'Набу'], 0],
+
+      ['Какого цвета световой меч Йоды?', ['Синий', 'Зелёный', 'Красный', 'Фиолетовый'], 1],
+
+      ['Кем приходится Дарт Вейдер Люку?', ['Учителем', 'Другом', 'Отцом', 'Дядей'], 2],
+
+      ['Как называется корабль Хана Соло?', ['Икс-крыл', 'Тысячелетний сокол', 'Звёздный разрушитель', 'Истребитель СИД'], 1],
+
+      ['К какому виду относится Чубакка?', ['Эвок', 'Вуки', 'Тви’лек', 'Родианец'], 1],
+
+      ['Кто обучал Люка на Дагобе?', ['Йода', 'Мейс Винду', 'Квай-Гон Джинн', 'Дуку'], 0],
+
+      ['Какое оружие используют джедаи?', ['Бластер', 'Световой меч', 'Лук', 'Копьё'], 1],
+
+      ['Как называлась родная планета принцессы Леи?', ['Альдераан', 'Корусант', 'Кашиик', 'Мустафар'], 0],
+
+      ['Кто был Императором в оригинальной трилогии?', ['Палпатин', 'Таркин', 'Джабба', 'Траун'], 0],
+
+      ['Как зовут отца Бобы Фетта?', ['Джанго Фетт', 'Дарт Мол', 'Граф Дуку', 'Гридо'], 0]
+
+    ],
+
+    [
+
+      ['Какая фамилия у Кевина?', ['Маккалистер', 'Мёрфи', 'Дункан', 'Смит'], 0],
+
+      ['Куда отправляется семья Кевина?', ['В Париж', 'В Лондон', 'В Рим', 'В Мадрид'], 0],
+
+      ['Как зовут двух грабителей?', ['Гарри и Марв', 'Том и Джерри', 'Майк и Джо', 'Бен и Сэм'], 0],
+
+      ['В каком городе происходит действие фильма?', ['Нью-Йорк', 'Чикаго', 'Бостон', 'Лос-Анджелес'], 1],
+
+      ['Что использует Кевин, чтобы напугать грабителей?', ['Фильм', 'Радио', 'Телефон', 'Камеру'], 0],
+
+      ['Кто играет Кевина?', ['Маколей Калкин', 'Дэниел Рэдклифф', 'Элайджа Вуд', 'Том Холланд'], 0],
+
+      ['С каким праздником связан фильм?', ['Хэллоуин', 'Рождество', 'Пасха', 'Только Новый год'], 1],
+
+      ['Как зовут старшего брата Кевина?', ['Базз', 'Фуллер', 'Джефф', 'Митч'], 0],
+
+      ['Где живёт семья Кевина?', ['В большом доме', 'В отеле', 'В квартире', 'В домике'], 0],
+
+      ['Что Кевин часто говорит?', ['Сдачи не надо!', 'Я Бэтмен!', 'Беги!', 'Привет!'], 0]
+
+    ],
+
+    [
+
+      ['Какая компания выпустила Ferrari F40?', ['Ferrari', 'Porsche', 'Lamborghini', 'McLaren'], 0],
+
+      ['Где находится штаб-квартира Ferrari?', ['В Италии', 'В Германии', 'Во Франции', 'В Японии'], 0],
+
+      ['Какой автомобиль известен дверями типа «крыло чайки»?', ['DeLorean DMC-12', 'Toyota Supra', 'Mazda RX-7', 'Ferrari F40'], 0],
+
+      ['Какая компания создала McLaren F1?', ['McLaren', 'Ford', 'BMW', 'Honda'], 0],
+
+      ['От чего помогает система ABS?', ['От блокировки колёс', 'От перегрева двигателя', 'От утечки топлива', 'От износа шин'], 0],
+
+      ['Из какой страны родом Porsche?', ['Германия', 'Италия', 'США', 'Швеция'], 0],
+
+      ['Сколько цилиндров у типичного двигателя V8?', ['Восемь', 'Шесть', 'Четыре', 'Десять'], 0],
+
+      ['С каким автомобилем связан фильм «Назад в будущее»?', ['DeLorean', 'Ferrari F40', 'Porsche 911', 'Ford GT'], 0],
+
+      ['Какая компания выпускает Mustang?', ['Ford', 'Chevrolet', 'Dodge', 'Nissan'], 0],
+
+      ['Что такое Нюрбургринг?', ['Гоночная трасса', 'Автомобильная компания', 'Модель машины', 'Музей'], 0]
+
+    ],
+
+    [
+
+      ['Кто написал «Мону Лизу»?', ['Леонардо да Винчи', 'Ван Гог', 'Пикассо', 'Моне'], 0],
+
+      ['Кто написал «Звёздную ночь»?', ['Винсент ван Гог', 'Клод Моне', 'Сальвадор Дали', 'Рембрандт'], 0],
+
+      ['Какой художник связан с кубизмом?', ['Пабло Пикассо', 'Микеланджело', 'Рафаэль', 'Тёрнер'], 0],
+
+      ['Кто расписал потолок Сикстинской капеллы?', ['Микеланджело', 'Леонардо да Винчи', 'Караваджо', 'Гойя'], 0],
+
+      ['Кто написал серию картин «Кувшинки»?', ['Клод Моне', 'Эдвард Мунк', 'Пикассо', 'Дюрер'], 0],
+
+      ['Кто создал картину «Постоянство памяти»?', ['Сальвадор Дали', 'Ван Гог', 'Моне', 'Климт'], 0],
+
+      ['Кто написал картину «Крик»?', ['Эдвард Мунк', 'Рембрандт', 'Рафаэль', 'Вермеер'], 0],
+
+      ['Что такое скульптура?', ['Трёхмерное произведение искусства', 'Вид поэзии', 'Музыкальный инструмент', 'Фотография'], 0],
+
+      ['С каким направлением связан Клод Моне?', ['Импрессионизм', 'Кубизм', 'Сюрреализм', 'Барокко'], 0],
+
+      ['Кто написал «Девушку с жемчужной серёжкой»?', ['Ян Вермеер', 'Рембрандт', 'Пикассо', 'Дали'], 0]
+
+    ],
+
+    [
+
+      ['Какая цивилизация построила пирамиды в Гизе?', ['Древние египтяне', 'Римляне', 'Греки', 'Персы'], 0],
+
+      ['Кто был первым римским императором?', ['Октавиан Август', 'Юлий Цезарь', 'Нерон', 'Траян'], 0],
+
+      ['В каком году закончилась Вторая мировая война?', ['1945', '1939', '1918', '1950'], 0],
+
+      ['Какой город был столицей Византийской империи?', ['Константинополь', 'Афины', 'Рим', 'Александрия'], 0],
+
+      ['Кто первым ступил на Луну?', ['Нил Армстронг', 'Юрий Гагарин', 'Базз Олдрин', 'Джон Гленн'], 0],
+
+      ['Какой древний город был погребён извержением Везувия?', ['Помпеи', 'Спарта', 'Карфаген', 'Троя'], 0],
+
+      ['Какой документ был подписан в Англии в 1215 году?', ['Великая хартия вольностей', 'Декларация независимости', 'Версальский договор', 'Билль о правах'], 0],
+
+      ['Кто был первым президентом США?', ['Джордж Вашингтон', 'Авраам Линкольн', 'Томас Джефферсон', 'Джон Адамс'], 0],
+
+      ['Какой империей правил Чингисхан?', ['Монгольской империей', 'Римской империей', 'Османской империей', 'Империей Мали'], 0],
+
+      ['В каком году пала Берлинская стена?', ['1989', '1975', '1995', '1961'], 0]
+
+    ]
+
+  ];
+
+  if (lang === 'ru') {
+
+    currentQuestions = ruQuestions[index].map(q => ({
+
+      question: q[0],
+
+      answers: q[1].map((answer, i) => ({ text: answer, correct: i === q[2] }))
+
+    }));
+
+  }
+
+  document.getElementById('home').classList.add('hidden');
+
+  document.getElementById('result').classList.add('hidden');
+
+  document.getElementById('quiz').classList.remove('hidden');
+
+  document.getElementById('categoryName').textContent = translations[lang].categories[index][0];
+
+  renderQuestion();
+
+}
+
+function renderQuestion() {
+
+  clearInterval(timer);
+
+  answered = false;
+
+  timeLeft = 20;
+
+  const q = currentQuestions[currentQuestion];
+
+  document.getElementById('counter').textContent =
+
+    `${t('question')} ${currentQuestion + 1}/10`;
+
+  document.getElementById('question').textContent = q.question;
+
+  document.getElementById('feedback').textContent = '';
+
+  document.getElementById('nextBtn').classList.add('hidden');
+
+  document.getElementById('progress').style.width =
+
+    `${currentQuestion / 10 * 100}%`;
+
+  const shuffled = [...q.answers].sort(() => Math.random() - 0.5);
+
+  const answersBox = document.getElementById('answers');
+
+  answersBox.innerHTML = '';
+
+  shuffled.forEach(answer => {
+
+    const btn = document.createElement('button');
+
+    btn.className = 'answer';
+
+    btn.textContent = answer.text;
+
+    btn.addEventListener('click', () => selectAnswer(btn, answer));
+
+    answersBox.appendChild(btn);
+
+  });
+
+  updateTimer();
+
+  timer = setInterval(() => {
+
+    timeLeft--;
+
     updateTimer();
 
-    timerInterval = setInterval(() => {
-        timeLeft--;
-        updateTimer();
+    if (timeLeft <= 0) {
 
-        if (timeLeft <= 0) {
-            finishQuiz();
-        }
-    }, 1000);
+      clearInterval(timer);
 
-    showQuestion();
+      revealAnswer(null);
+
+    }
+
+  }, 1000);
+
 }
 
 function updateTimer() {
-    const minutes = Math.floor(timeLeft / 60);
-    const seconds = timeLeft % 60;
 
-    timerEl.textContent =
-        String(minutes).padStart(2, "0") + ":" +
-        String(seconds).padStart(2, "0");
+  document.getElementById('timer').textContent =
+
+    `${timeLeft} ${t('seconds')}`;
+
 }
 
-function showQuestion() {
-    answered = false;
+function selectAnswer(button, answer) {
 
-    const q = questions[currentQuestion];
+  if (answered) return;
 
-    progressEl.textContent =
-        `Question ${currentQuestion + 1} / ${questions.length}`;
+  if (answer.correct) score++;
 
-    progressFill.style.width =
-        `${(currentQuestion / questions.length) * 100}%`;
+  revealAnswer(answer);
 
-    questionEl.textContent = q.q;
-    answersEl.innerHTML = "";
-    feedbackEl.textContent = "";
-    nextBtn.classList.add("hidden");
-
-    q.a.forEach((answer, index) => {
-        const button = document.createElement("button");
-        button.className = "answer";
-        button.textContent = answer;
-
-        button.addEventListener("click", () => selectAnswer(index));
-
-        answersEl.appendChild(button);
-    });
 }
 
-function selectAnswer(index) {
-    if (answered) return;
+function revealAnswer(selected) {
 
-    answered = true;
+  if (answered) return;
 
-    const q = questions[currentQuestion];
-    const buttons = answersEl.querySelectorAll(".answer");
+  answered = true;
 
-    buttons.forEach((button, i) => {
-        button.disabled = true;
+  clearInterval(timer);
 
-        if (i === q.c) {
-            button.classList.add("correct");
-        }
+  const buttons = document.querySelectorAll('.answer');
 
-        if (i === index && index !== q.c) {
-            button.classList.add("wrong");
-        }
-    });
+  let correctText = '';
 
-    if (index === q.c) {
-        score++;
-        feedbackEl.textContent = "Correct answer!";
-    } else {
-        feedbackEl.textContent =
-            "Incorrect. The correct answer is: " + q.a[q.c];
+  buttons.forEach(button => {
+
+    const answer = currentQuestions[currentQuestion].answers
+
+      .find(a => a.text === button.textContent);
+
+    button.disabled = true;
+
+    if (answer.correct) {
+
+      button.classList.add('correct');
+
+      correctText = answer.text;
+
+    } else if (selected && answer.text === selected.text) {
+
+      button.classList.add('wrong');
+
     }
 
-    progressFill.style.width =
-        `${((currentQuestion + 1) / questions.length) * 100}%`;
+  });
 
-    nextBtn.textContent =
-        currentQuestion === questions.length - 1
-            ? "Finish Quiz"
-            : "Next Question";
+  let message;
 
-    nextBtn.classList.remove("hidden");
+  if (selected === null) {
+
+    message = `${t('timeUp')} ${correctText}`;
+
+  } else if (selected.correct) {
+
+    message = t('correct');
+
+  } else {
+
+    message = `${t('wrong')} ${correctText}`;
+
+  }
+
+  document.getElementById('feedback').textContent = message;
+
+  document.getElementById('nextBtn').classList.remove('hidden');
+
+  document.getElementById('nextBtn').textContent =
+
+    currentQuestion === 9 ? t('completed') : t('next');
+
 }
 
-nextBtn.addEventListener("click", () => {
-    if (!answered) return;
+function nextQuestion() {
 
-    currentQuestion++;
+  if (!answered) return;
 
-    if (currentQuestion >= questions.length) {
-        finishQuiz();
-    } else {
-        showQuestion();
-    }
-});
+  currentQuestion++;
+
+  if (currentQuestion >= 10) {
+
+    finishQuiz();
+
+  } else {
+
+    renderQuestion();
+
+  }
+
+}
 
 function finishQuiz() {
-    clearInterval(timerInterval);
 
-    game.classList.add("hidden");
-    result.classList.remove("hidden");
+  clearInterval(timer);
 
-    document.getElementById("score").textContent =
-        `${score} / ${questions.length}`;
+  document.getElementById('quiz').classList.add('hidden');
 
-    let message = "";
+  document.getElementById('result').classList.remove('hidden');
 
-    const percentage = (score / questions.length) * 100;
+  document.getElementById('resultTitle').textContent = t('completed');
 
-    if (percentage === 100) {
-        message = "Perfect score! Outstanding knowledge!";
-    } else if (percentage >= 80) {
-        message = "Excellent work! You know this topic very well.";
-    } else if (percentage >= 60) {
-        message = "Good job! You have a solid knowledge base.";
-    } else if (percentage >= 40) {
-        message = "Not bad! There is still room to improve.";
-    } else {
-        message = "Keep learning and try again!";
-    }
+  document.getElementById('resultDescription').textContent = t('yourResult');
 
-    if (timeLeft <= 0) {
-        message += " Time is up!";
-    }
+  document.getElementById('score').textContent = `${score}/10`;
 
-    document.getElementById("resultMessage").textContent = message;
-}
+  let message = score >= 8 ? t('excellent') :
 
-function showMenu() {
-    clearInterval(timerInterval);
+                score >= 5 ? t('good') : t('practice');
 
-    game.classList.add("hidden");
-    result.classList.add("hidden");
-    menu.classList.remove("hidden");
+  document.getElementById('resultMessage').textContent = message;
+
 }
 
 function restartQuiz() {
-    startQuiz(currentCategory);
+
+  startQuiz(currentCategory);
+
 }
 
-createMenu();
+function goHome() {
 
-// Snow animation
-const canvas = document.getElementById("snow");
-const ctx = canvas.getContext("2d");
+  clearInterval(timer);
 
-let snowflakes = [];
+  document.getElementById('quiz').classList.add('hidden');
 
-function resizeCanvas() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+  document.getElementById('result').classList.add('hidden');
 
-    snowflakes = Array.from({ length: 100 }, () => ({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        radius: Math.random() * 2.5 + 0.5,
-        speed: Math.random() * 1.2 + 0.4,
-        drift: Math.random() * 0.6 - 0.3
-    }));
+  document.getElementById('home').classList.remove('hidden');
+
+  document.getElementById('search').value = '';
+
+  filterCategories();
+
+}
+
+renderCategories();
+
+/* Snow animation */
+
+const canvas = document.getElementById('snow');
+
+const ctx = canvas.getContext('2d');
+
+let flakes = [];
+
+function resizeSnow() {
+
+  canvas.width = window.innerWidth;
+
+  canvas.height = window.innerHeight;
+
+  flakes = Array.from({length: Math.min(100, Math.floor(window.innerWidth / 8))},
+
+    () => ({
+
+      x: Math.random() * canvas.width,
+
+      y: Math.random() * canvas.height,
+
+      r: Math.random() * 2.5 + 0.7,
+
+      speed: Math.random() * 1.1 + 0.4,
+
+      drift: Math.random() * 0.6 - 0.3
+
+    })
+
+  );
+
 }
 
 function drawSnow() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    ctx.fillStyle = "rgba(255,255,255,0.8)";
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    snowflakes.forEach(flake => {
-        ctx.beginPath();
-        ctx.arc(flake.x, flake.y, flake.radius, 0, Math.PI * 2);
-        ctx.fill();
+  ctx.fillStyle = 'rgba(255,255,255,0.75)';
 
-        flake.y += flake.speed;
-        flake.x += flake.drift;
+  flakes.forEach(f => {
 
-        if (flake.y > canvas.height) {
-            flake.y = -5;
-            flake.x = Math.random() * canvas.width;
-        }
+    ctx.beginPath();
 
-        if (flake.x > canvas.width) flake.x = 0;
-        if (flake.x < 0) flake.x = canvas.width;
-    });
+    ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2);
 
-    requestAnimationFrame(drawSnow);
+    ctx.fill();
+
+    f.y += f.speed;
+
+    f.x += f.drift;
+
+    if (f.y > canvas.height + 5) {
+
+      f.y = -5;
+
+      f.x = Math.random() * canvas.width;
+
+    }
+
+    if (f.x > canvas.width + 5) f.x = -5;
+
+    if (f.x < -5) f.x = canvas.width + 5;
+
+  });
+
+  requestAnimationFrame(drawSnow);
+
 }
 
-window.addEventListener("resize", resizeCanvas);
+resizeSnow();
 
-resizeCanvas();
-drawSnow();
+window.addEventListener('resize', resizeSnow);
+
+if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+
+  drawSnow();
+
+}
+
 </script>
 
 </body>
+
 </html>
