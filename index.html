@@ -1,997 +1,127 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <!-- BASIC SETTINGS -->
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#071b13">
-  <!-- SEO TITLE -->
-  <title>R GAMES — Free Online Quizzes, Trivia and Games</title>
-  <!-- SEO DESCRIPTION -->
-  <meta name="description" content="Play free online quizzes, trivia and knowledge games. Explore Star Wars, cars, Christmas, Home Alone, movies, art and world history. Test your knowledge with R GAMES!">
-  <!-- SEARCH ENGINE INDEXING -->
-  <meta name="robots" content="index, follow">
-  <meta name="googlebot" content="index, follow">
-  <link rel="canonical" href="https://007bmwm7007-cell.github.io/progect-1/">
-  <!-- LANGUAGE -->
-  <meta http-equiv="content-language" content="en, ru">
-  <!-- KEYWORDS -->
-  <meta name="keywords" content="
-  quiz, quizzes, game, games, online, free, play, trivia, challenge, test,
-  online quiz, free quiz, quiz game, quiz games, online games, free games,
-  trivia game, knowledge test, brain game, interactive quiz,
-  Star Wars, Jedi, Sith, galaxy, space, Star Wars quiz, Jedi quiz,
-  Star Wars game, Star Wars trivia, Star Wars challenge,
-  Christmas, New Year, winter, holiday, Christmas quiz, New Year quiz,
-  winter quiz, Christmas game, holiday quiz, Christmas trivia,
-  Home Alone, Kevin, movie, movies, film, films, Home Alone quiz,
-  movie quiz, film quiz, Christmas movie quiz, movie trivia,
-  car, cars, racing, supercar, hypercar, Ferrari, Lamborghini,
-  McLaren, Porsche, automobile, car quiz, cars quiz, racing game,
-  supercar quiz, Ferrari quiz, sports cars, classic cars, fast cars,
-  art, artist, artists, painting, paintings, drawing, museum,
-  artwork, art quiz, artist quiz, painting quiz, famous artists,
-  famous paintings, art history, history, world history, ancient,
-  civilization, medieval, history quiz, history game, history trivia,
-  ancient history, medieval history, world quiz, education, learning,
-  knowledge, questions, answers, school, students, brain, puzzle,
-  educational games, learning games, general knowledge, general quiz,
-  quiz challenge, online challenge, free trivia, quiz website,
-  викторина, квиз, квиз онлайн, бесплатные игры, онлайн игры,
-  вопросы, тест знаний, игры викторины">
-  <!-- OPEN GRAPH -->
-  <meta property="og:title" content="R GAMES — Free Online Quiz Games">
-  <meta property="og:description" content="Discover six quiz categories and test your knowledge with free online quizzes and trivia!">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://007bmwm7007-cell.github.io/progect-1/">
-  <meta property="og:site_name" content="R GAMES">
-  <meta property="og:locale" content="en_US">
-  <!-- TWITTER / X -->
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="R GAMES — Free Online Quiz Games">
-  <meta name="twitter:description" content="Play free quizzes about Star Wars, cars, Christmas, movies, art and world history.">
-  
-  <style>
-    * { box-sizing: border-box; }
-
-    body {
-      margin: 0;
-      min-height: 100vh;
-      background: #07130f;
-      color: #f4f8f5;
-      font-family: Arial, sans-serif;
-      overflow-x: hidden;
-    }
-
-    #snow {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    .container {
-      position: relative;
-      z-index: 1;
-      width: min(1100px, 92%);
-      margin: auto;
-      padding: 28px 0 55px;
-    }
-
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 15px;
-      margin-bottom: 55px;
-    }
-
-    .logo {
-      font-size: 28px;
-      font-weight: 900;
-      letter-spacing: 3px;
-    }
-
-    .logo span { color: #d83d43; }
-
-    button, input { font: inherit; }
-
-    .lang-btn, .back-btn {
-      background: #173b2b;
-      border: 1px solid #3c7656;
-      color: white;
-      padding: 10px 17px;
-      border-radius: 10px;
-      cursor: pointer;
-    }
-
-    .hero {
-      text-align: center;
-      margin-bottom: 38px;
-    }
-
-    .hero h1 {
-      font-size: clamp(32px, 6vw, 55px);
-      margin: 0 0 12px;
-    }
-
-    .hero h1 span { color: #e44b50; }
-
-    .hero p {
-      color: #a9c0b1;
-      font-size: 16px;
-    }
-
-    .search-wrap {
-      max-width: 600px;
-      margin: 30px auto 35px;
-    }
-
-    .search {
-      width: 100%;
-      padding: 17px 20px;
-      border-radius: 13px;
-      border: 1px solid #376b4e;
-      background: #10251b;
-      color: white;
-      outline: none;
-      font-size: 16px;
-    }
-
-    .search:focus { border-color: #65b77d; }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-    }
-
-    .category {
-      background: linear-gradient(145deg, #173c2b, #10251b);
-      border: 1px solid #315d43;
-      border-radius: 17px;
-      padding: 25px;
-      min-height: 165px;
-      cursor: pointer;
-      transition: .2s;
-    }
-
-    .category:hover {
-      transform: translateY(-5px);
-      border-color: #77bd88;
-      background: #1b4932;
-    }
-
-    .category h2 {
-      margin: 0 0 12px;
-      font-size: 21px;
-    }
-
-    .category p {
-      color: #b3c8b9;
-      line-height: 1.5;
-      margin: 0;
-      font-size: 14px;
-    }
-
-    .category .number {
-      color: #e45a5e;
-      font-size: 12px;
-      margin-top: 17px;
-      font-weight: bold;
-    }
-
-    .hidden { display: none !important; }
-
-    #quiz, #result {
-      max-width: 700px;
-      margin: auto;
-      background: #10251b;
-      border: 1px solid #376b4e;
-      border-radius: 18px;
-      padding: 28px;
-    }
-
-    .quiz-top {
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      color: #b9d0c0;
-      margin-bottom: 20px;
-      font-size: 14px;
-    }
-
-    .progress {
-      height: 7px;
-      background: #263b30;
-      border-radius: 10px;
-      overflow: hidden;
-      margin-bottom: 25px;
-    }
-
-    .progress-fill {
-      height: 100%;
-      background: #d94148;
-      width: 0%;
-      transition: .3s;
-    }
-
-    #question {
-      font-size: 25px;
-      line-height: 1.4;
-      margin-bottom: 25px;
-    }
-
-    .answers {
-      display: grid;
-      gap: 12px;
-    }
-
-    .answer {
-      text-align: left;
-      padding: 16px;
-      border-radius: 11px;
-      border: 1px solid #42664e;
-      background: #193a29;
-      color: white;
-      cursor: pointer;
-      transition: .15s;
-    }
-
-    .answer:hover:not(:disabled) { background: #28533a; }
-
-    .answer:disabled { cursor: default; opacity: .9; }
-
-    .answer.correct { background: #17643a; border-color: #5acb83; }
-    .answer.wrong { background: #722d32; border-color: #e45b62; }
-
-    #feedback {
-      min-height: 26px;
-      margin: 18px 0;
-      color: #c4d8c9;
-    }
-
-    .main-btn {
-      background: #d94148;
-      border: none;
-      color: white;
-      padding: 14px 24px;
-      border-radius: 10px;
-      cursor: pointer;
-      font-weight: bold;
-      margin-top: 10px;
-    }
-
-    .main-btn:hover { background: #ef555b; }
-
-    #result { text-align: center; }
-
-    #result h2 { font-size: 32px; }
-
-    #score {
-      font-size: 45px;
-      color: #e34c53;
-      font-weight: bold;
-    }
-
-    .footer {
-      text-align: center;
-      color: #718b79;
-      font-size: 12px;
-      margin-top: 55px;
-    }
-
-    .seo-content {
-  margin-top: 55px;
-  padding: 25px;
-  background: #10251b;
-  border: 1px solid #315d43;
-  border-radius: 17px;
-  color: #b3c8b9;
-  line-height: 1.7;
-}
-
-.seo-content h2,
-.seo-content h3 {
-  color: #f4f8f5;
-}
-
-.seo-content h2 {
-  font-size: 22px;
-  margin-top: 0;
-}
-
-.seo-content h3 {
-  font-size: 17px;
-  margin-bottom: 5px;
-}
-
-.seo-content p {
-  font-size: 14px;
-  margin-top: 5px;
-}
-
-    @media (max-width: 750px) {
-      .grid { grid-template-columns: repeat(2, 1fr); }
-      header { margin-bottom: 35px; }
-    }
-
-    @media (max-width: 480px) {
-      .grid { grid-template-columns: 1fr; }
-      .category { min-height: 130px; }
-      #quiz, #result { padding: 20px; }
-      #question { font-size: 21px; }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        scroll-behavior: auto !important;
-        transition: none !important;
-      }
-    }
-  </style>
-</head>
-
-<body>
-<canvas id="snow"></canvas>
-
-<div class="container">
-  <header>
-    <div class="logo">R <span>GAMES</span></div>
-    <button class="lang-btn" id="langBtn" onclick="toggleLanguage()">RU</button>
-  </header>
-
-  <main>
-    <section id="home">
-      <div class="hero">
-        <h1 id="heroTitle">QUIZ <span>CHALLENGE</span></h1>
-        <p id="heroText">Choose a category, test your knowledge and beat your score.</p>
-      </div>
-
-      <div class="search-wrap">
-        <input
-          class="search"
-          id="search"
-          type="search"
-          placeholder="Search quizzes..."
-          autocomplete="off"
-        >
-      </div>
-
-      <div class="grid" id="categories"></div>
-      <p id="noResults" class="hidden" style="text-align:center;color:#b3c8b9">
-        No quizzes found.
-      </p>
-      <section class="seo-content">
-  <h2 id="seoTitle">Explore Free Online Quiz Categories</h2>
-
-  <p id="seoIntro">
-    Welcome to R GAMES! Play free online quizzes, trivia games
-    and knowledge challenges. Choose your favourite topic and
-    test what you know.
-  </p>
-
-  <h3 id="seoNewYear">New Year and Christmas Quizzes</h3>
-  <p id="seoNewYearText">
-    Explore Christmas traditions, winter celebrations and New Year trivia.
-  </p>
-
-  <h3 id="seoStarWars">Star Wars Quizzes</h3>
-  <p id="seoStarWarsText">
-    Test your knowledge of the Star Wars galaxy, Jedi, Sith,
-    characters and spaceships.
-  </p>
-
-  <h3 id="seoMovies">Home Alone and Movie Quizzes</h3>
-  <p id="seoMoviesText">
-    Answer questions about Home Alone, famous films and movie characters.
-  </p>
-
-  <h3 id="seoCars">Cars and Supercars Quizzes</h3>
-  <p id="seoCarsText">
-    Discover trivia about Ferrari, Porsche, McLaren, racing
-    and automotive history.
-  </p>
-
-  <h3 id="seoArt">Art and Artists Quizzes</h3>
-  <p id="seoArtText">
-    Explore famous painters, masterpieces, museums and art history.
-  </p>
-
-  <h3 id="seoHistory">World History Quizzes</h3>
-  <p id="seoHistoryText">
-    Test your knowledge of ancient civilizations, historical
-    events and influential people.
-  </p>
-</section>
-    </section>
-
-    <section id="quiz" class="hidden">
-      <div class="quiz-top">
-        <span id="categoryName"></span>
-        <span id="counter"></span>
-        <span id="timer"></span>
-      </div>
-
-      <div class="progress">
-        <div class="progress-fill" id="progress"></div>
-      </div>
-
-      <h2 id="question"></h2>
-      <div class="answers" id="answers"></div>
-      <div id="feedback"></div>
-      <button class="main-btn hidden" id="nextBtn" onclick="nextQuestion()">
-        Next question
-      </button>
-    </section>
-
-    <section id="result" class="hidden">
-      <h2 id="resultTitle">Quiz completed!</h2>
-      <p id="resultDescription">Your result:</p>
-      <div id="score">0/10</div>
-      <p id="resultMessage"></p>
-      <button class="main-btn" onclick="restartQuiz()" id="retryBtn">
-        Try again
-      </button>
-      <br>
-      <button class="back-btn" onclick="goHome()" id="homeBtn" style="margin-top:15px">
-        Back to categories
-      </button>
-    </section>
-  </main>
-
-  <div class="footer">R GAMES · QUIZ CHALLENGE</div>
-</div>
-
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#071b13"><title>R GAMES — Free Online Quizzes, Trivia and Games</title><meta name="description" content="Play free online quizzes about New Year, Star Wars, Home Alone, cars, art, world history, Harry Potter, music bands, world capitals and space."><meta name="robots" content="index,follow"><link rel="canonical" href="https://007bmwm7007-cell.github.io/progect-1/"><meta property="og:title" content="R GAMES — Free Online Quiz Games"><meta property="og:description" content="Explore 10 quiz categories: New Year, Star Wars, Harry Potter, music, world capitals and space."><meta property="og:type" content="website"><meta property="og:url" content="https://007bmwm7007-cell.github.io/progect-1/"><style>
+*{box-sizing:border-box}body{margin:0;min-height:100vh;background:#07130f;color:#f4f8f5;font-family:Arial,sans-serif;overflow-x:hidden}#snow{position:fixed;inset:0;pointer-events:none;z-index:0}.container{position:relative;z-index:1;width:min(1100px,92%);margin:auto;padding:28px 0 55px}header{display:flex;justify-content:space-between;align-items:center;gap:15px;margin-bottom:55px}.logo{font-size:28px;font-weight:900;letter-spacing:3px}.logo span{color:#d83d43}button,input{font:inherit}.lang-btn,.back-btn{background:#173b2b;border:1px solid #3c7656;color:white;padding:10px 17px;border-radius:10px;cursor:pointer}.hero{text-align:center;margin-bottom:38px}.hero h1{font-size:clamp(32px,6vw,55px);margin:0 0 12px}.hero h1 span{color:#e44b50}.hero p{color:#a9c0b1;font-size:16px}.search-wrap{max-width:600px;margin:30px auto 35px}.search{width:100%;padding:17px 20px;border-radius:13px;border:1px solid #376b4e;background:#10251b;color:white;outline:none;font-size:16px}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.category{background:linear-gradient(145deg,#173c2b,#10251b);border:1px solid #315d43;border-radius:17px;padding:25px;min-height:165px;cursor:pointer;transition:.2s}.category:hover{transform:translateY(-5px);border-color:#77bd88;background:#1b4932}.category h2{margin:0 0 12px;font-size:21px}.category p{color:#b3c8b9;line-height:1.5;margin:0;font-size:14px}.number{color:#e45a5e;font-size:12px;margin-top:17px;font-weight:bold}.hidden{display:none!important}#quiz,#result{max-width:700px;margin:auto;background:#10251b;border:1px solid #376b4e;border-radius:18px;padding:28px}.quiz-top{display:flex;justify-content:space-between;gap:12px;color:#b9d0c0;margin-bottom:20px;font-size:14px}.progress{height:7px;background:#263b30;border-radius:10px;overflow:hidden;margin-bottom:25px}.progress-fill{height:100%;background:#d94148;width:0%;transition:.3s}#question{font-size:25px;line-height:1.4;margin-bottom:25px}.answers{display:grid;gap:12px}.answer{text-align:left;padding:16px;border-radius:11px;border:1px solid #42664e;background:#193a29;color:white;cursor:pointer}.answer:hover:not(:disabled){background:#28533a}.answer:disabled{cursor:default;opacity:.9}.answer.correct{background:#17643a;border-color:#5acb83}.answer.wrong{background:#722d32;border-color:#e45b62}#feedback{min-height:26px;margin:18px 0;color:#c4d8c9}.main-btn{background:#d94148;border:0;color:white;padding:14px 24px;border-radius:10px;cursor:pointer;font-weight:bold;margin-top:10px}#result{text-align:center}#result h2{font-size:32px}#score{font-size:45px;color:#e34c53;font-weight:bold}.footer{text-align:center;color:#718b79;font-size:12px;margin-top:55px}.seo-content{margin-top:55px;padding:25px;background:#10251b;border:1px solid #315d43;border-radius:17px;color:#b3c8b9;line-height:1.7}.seo-content h2{color:#f4f8f5;font-size:22px;margin-top:0}@media(max-width:750px){.grid{grid-template-columns:repeat(2,1fr)}header{margin-bottom:35px}}@media(max-width:480px){.grid{grid-template-columns:1fr}.category{min-height:130px}#quiz,#result{padding:20px}#question{font-size:21px}}@media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important}}
+</style></head><body><canvas id="snow"></canvas><div class="container"><header><div class="logo">R <span>GAMES</span></div><button class="lang-btn" id="langBtn" onclick="toggleLanguage()">RU</button></header><main><section id="home"><div class="hero"><h1 id="heroTitle">QUIZ <span>CHALLENGE</span></h1><p id="heroText">Choose a category, test your knowledge and beat your score.</p></div><div class="search-wrap"><input class="search" id="search" type="search" placeholder="Search quizzes..." autocomplete="off"></div><div class="grid" id="categories"></div><p id="noResults" class="hidden" style="text-align:center;color:#b3c8b9">No quizzes found.</p><section class="seo-content"><h2 id="seoTitle">Explore Free Online Quiz Categories</h2><p id="seoIntro">Welcome to R GAMES! Play free online quizzes and knowledge challenges.</p></section></section><section id="quiz" class="hidden"><div class="quiz-top"><span id="categoryName"></span><span id="counter"></span><span id="timer"></span></div><div class="progress"><div class="progress-fill" id="progress"></div></div><h2 id="question"></h2><div class="answers" id="answers"></div><div id="feedback"></div><button class="main-btn hidden" id="nextBtn" onclick="nextQuestion()">Next question</button></section><section id="result" class="hidden"><h2 id="resultTitle">Quiz completed!</h2><p id="resultDescription">Your result:</p><div id="score">0/10</div><p id="resultMessage"></p><button class="main-btn" onclick="restartQuiz()" id="retryBtn">Try again</button><br><button class="back-btn" onclick="goHome()" id="homeBtn" style="margin-top:15px">Back to categories</button></section></main><div class="footer">R GAMES · QUIZ CHALLENGE</div></div>
 <script>
-const translations = {
-  en: {
-    hero: 'QUIZ <span>CHALLENGE</span>',
-    intro: 'Choose a category, test your knowledge and beat your score.',
-    search: 'Search quizzes...',
-    noResults: 'No quizzes found.',
-    next: 'Next question',
-    retry: 'Try again',
-    home: 'Back to categories',
-    completed: 'Quiz completed!',
-    yourResult: 'Your result:',
-    correct: 'Correct answer!',
-    wrong: 'Not quite! The correct answer is:',
-    timeUp: 'Time is up! The correct answer is:',
-    excellent: 'Excellent result!',
-    good: 'Well done!',
-    practice: 'Good try! Keep practising!',
-    question: 'Question',
-    seconds: 'sec',
-    categories: [
-      ['New Year', 'Christmas, winter traditions and celebrations', 'new year christmas winter holiday'],
-      ['Star Wars', 'A galaxy far, far away', 'star wars jedi sith skywalker'],
-      ['Home Alone', 'The famous Christmas movie', 'home alone kevin mccall movie'],
-      ['Cars', 'Supercars, racing and automotive history', 'cars ferrari porsche mclaren racing'],
-      ['Artists', 'Famous painters and their masterpieces', 'artists painting art picasso da vinci'],
-      ['World History', 'Events and people that shaped our world', 'world history ancient rome egypt history']
-    ]
-  },
-  ru: {
-    hero: 'МИР <span>ВИКТОРИН</span>',
-    intro: 'Выбирай категорию, проверяй свои знания и набирай очки.',
-    search: 'Поиск викторин...',
-    noResults: 'Ничего не найдено.',
-    next: 'Следующий вопрос',
-    retry: 'Попробовать снова',
-    home: 'Назад к категориям',
-    completed: 'Викторина завершена!',
-    yourResult: 'Твой результат:',
-    correct: 'Правильный ответ!',
-    wrong: 'Не совсем! Правильный ответ:',
-    timeUp: 'Время вышло! Правильный ответ:',
-    excellent: 'Превосходный результат!',
-    good: 'Отличная работа!',
-    practice: 'Хорошая попытка! Продолжай тренироваться!',
-    question: 'Вопрос',
-    seconds: 'сек.',
-    categories: [
-      ['Новый год', 'Рождество, зимние традиции и праздники', 'новый год рождество зима праздник'],
-      ['Звёздные войны', 'Далёкая-далёкая галактика', 'звёздные войны джедаи ситхи скайуокер'],
-      ['Один дома', 'Знаменитый рождественский фильм', 'один дома кевин фильм маккалистер'],
-      ['Автомобили', 'Суперкары, гонки и история автомобилей', 'автомобили феррари порше макларен гонки'],
-      ['Художники', 'Знаменитые живописцы и их шедевры', 'художники живопись искусство да винчи'],
-      ['Всемирная история', 'События и люди, изменившие мир', 'всемирная история древний рим египет']
-    ]
-  }
-};
-
-const quizzes = [
-  [
-    ['Which date is New Year celebrated on in many countries?', ['December 31', 'December 24', 'January 7', 'February 1'], 0],
-    ['Which plant is traditionally associated with Christmas?', ['Oak', 'Fir tree', 'Cactus', 'Bamboo'], 1],
-    ['Where did the tradition of decorated Christmas trees become popular?', ['Germany', 'Brazil', 'Japan', 'Egypt'], 0],
-    ['What do people traditionally count down to?', ['Sunrise', 'Midnight', 'Lunch', 'Sunset'], 1],
-    ['Which reindeer is famous for its red nose?', ['Dasher', 'Rudolph', 'Comet', 'Blitzen'], 1],
-    ['Which month begin the year?', ['March', 'January', 'December', 'April'], 1],
-    ['What is traditionally placed at the top of a Christmas tree?', ['A star', 'A bell', 'A candle', 'A book'], 0],
-    ['Which season is December in the Northern Hemisphere?', ['Summer', 'Spring', 'Winter', 'Autumn'], 2],
-    ['What do people often exchange during the holidays?', ['Gifts', 'Keys', 'Tickets', 'Maps'], 0],
-    ['How many months are in a year?', ['10', '11', '12', '13'], 2]
-  ],
-  [
-    ['What is the name of Luke Skywalker’s home planet?', ['Tatooine', 'Hoth', 'Endor', 'Naboo'], 0],
-    ['What colour is Yoda’s lightsaber?', ['Blue', 'Green', 'Red', 'Purple'], 1],
-    ['Who is Luke Skywalker’s father?', ['Obi-Wan Kenobi', 'Han Solo', 'Darth Vader', 'Palpatine'], 2],
-    ['What is the name of Han Solo’s ship?', ['X-wing', 'Millennium Falcon', 'Star Destroyer', 'TIE Fighter'], 1],
-    ['What species is Chewbacca?', ['Ewok', 'Wookiee', 'Twi’lek', 'Rodian'], 1],
-    ['Who trained Luke on Dagobah?', ['Yoda', 'Mace Windu', 'Qui-Gon Jinn', 'Dooku'], 0],
-    ['What is the weapon of the Jedi?', ['Blaster', 'Lightsaber', 'Bow', 'Spear'], 1],
-    ['What is Princess Leia’s home planet?', ['Alderaan', 'Coruscant', 'Kashyyyk', 'Mustafar'], 0],
-    ['Who is the Emperor in the original trilogy?', ['Palpatine', 'Tarkin', 'Jabba', 'Thrawn'], 0],
-    ['What is the name of Boba Fett’s father?', ['Jango Fett', 'Darth Maul', 'Count Dooku', 'Greedo'], 0]
-  ],
-  [
-    ['What is Kevin’s surname?', ['McCallister', 'Murphy', 'Duncan', 'Smith'], 0],
-    ['Where does Kevin’s family travel?', ['Paris', 'London', 'Rome', 'Madrid'], 0],
-    ['What is the name of the two burglars?', ['Harry and Marv', 'Tom and Jerry', 'Mike and Joe', 'Ben and Sam'], 0],
-    ['In which city does the film take place?', ['New York', 'Chicago', 'Boston', 'Los Angeles'], 1],
-    ['What does Kevin use to scare the burglars?', ['A movie', 'A radio', 'A phone', 'A camera'], 0],
-    ['Who plays Kevin?', ['Macaulay Culkin', 'Daniel Radcliffe', 'Elijah Wood', 'Tom Holland'], 0],
-    ['What holiday is the film associated with?', ['Halloween', 'Christmas', 'Easter', 'New Year only'], 1],
-    ['What is Kevin’s older brother’s name?', ['Buzz', 'Fuller', 'Jeff', 'Mitch'], 0],
-    ['Where does Kevin’s family live?', ['A large house', 'A hotel', 'An apartment', 'A cabin'], 0],
-    ['What does Kevin famously say?', ['Keep the change!', 'I am Batman!', 'Run away!', 'Hello there!'], 0]
-  ],
-  [
-    ['Which company makes the Ferrari F40?', ['Ferrari', 'Porsche', 'Lamborghini', 'McLaren'], 0],
-    ['Where is Ferrari based?', ['Italy', 'Germany', 'France', 'Japan'], 0],
-    ['Which car is famous for its gull-wing doors?', ['DeLorean DMC-12', 'Toyota Supra', 'Mazda RX-7', 'Ferrari F40'], 0],
-    ['Which company created the McLaren F1?', ['McLaren', 'Ford', 'BMW', 'Honda'], 0],
-    ['What does ABS help prevent?', ['Wheel lock-up', 'Engine overheating', 'Fuel leakage', 'Tyre wear'], 0],
-    ['Which country is Porsche from?', ['Germany', 'Italy', 'USA', 'Sweden'], 0],
-    ['What type of engine does a typical V8 have?', ['Eight cylinders', 'Six cylinders', 'Four cylinders', 'Ten cylinders'], 0],
-    ['Which car is associated with the film Back to the Future?', ['DeLorean', 'Ferrari F40', 'Porsche 911', 'Ford GT'], 0],
-    ['Which brand makes the Mustang?', ['Ford', 'Chevrolet', 'Dodge', 'Nissan'], 0],
-    ['What is the Nürburgring?', ['A race circuit', 'A car company', 'A car model', 'A museum'], 0]
-  ],
-  [
-    ['Who painted the Mona Lisa?', ['Leonardo da Vinci', 'Van Gogh', 'Picasso', 'Monet'], 0],
-    ['Who painted The Starry Night?', ['Vincent van Gogh', 'Claude Monet', 'Salvador Dalí', 'Rembrandt'], 0],
-    ['Which artist is associated with Cubism?', ['Pablo Picasso', 'Michelangelo', 'Raphael', 'Turner'], 0],
-    ['Who painted the ceiling of the Sistine Chapel?', ['Michelangelo', 'Leonardo da Vinci', 'Caravaggio', 'Goya'], 0],
-    ['Which artist painted Water Lilies?', ['Claude Monet', 'Edvard Munch', 'Picasso', 'Dürer'], 0],
-    ['Who created The Persistence of Memory?', ['Salvador Dalí', 'Van Gogh', 'Monet', 'Klimt'], 0],
-    ['Which artist painted The Scream?', ['Edvard Munch', 'Rembrandt', 'Raphael', 'Vermeer'], 0],
-    ['What is a sculpture?', ['A three-dimensional artwork', 'A type of poem', 'A musical instrument', 'A photograph'], 0],
-    ['Which art movement is associated with Claude Monet?', ['Impressionism', 'Cubism', 'Surrealism', 'Baroque'], 0],
-    ['Who painted Girl with a Pearl Earring?', ['Johannes Vermeer', 'Rembrandt', 'Picasso', 'Dalí'], 0]
-  ],
-  [
-    ['Which civilization built the pyramids at Giza?', ['Ancient Egyptians', 'Romans', 'Greeks', 'Persians'], 0],
-    ['Who was the first Roman emperor?', ['Augustus', 'Julius Caesar', 'Nero', 'Trajan'], 0],
-    ['In which year did World War II end?', ['1945', '1939', '1918', '1950'], 0],
-    ['Which city was the capital of the Byzantine Empire?', ['Constantinople', 'Athens', 'Rome', 'Alexandria'], 0],
-    ['Who was the first person to walk on the Moon?', ['Neil Armstrong', 'Yuri Gagarin', 'Buzz Aldrin', 'John Glenn'], 0],
-    ['Which ancient city was buried by Mount Vesuvius?', ['Pompeii', 'Sparta', 'Carthage', 'Troy'], 0],
-    ['Which document was signed in 1215 in England?', ['Magna Carta', 'Declaration of Independence', 'Treaty of Versailles', 'Bill of Rights'], 0],
-    ['Who was the first president of the United States?', ['George Washington', 'Abraham Lincoln', 'Thomas Jefferson', 'John Adams'], 0],
-    ['Which empire was ruled by Genghis Khan?', ['Mongol Empire', 'Roman Empire', 'Ottoman Empire', 'Mali Empire'], 0],
-    ['When the World War II began?', ['1939', '1914', '1941', '1919'], 0]
-  ]
+const C=[
+['New Year','Новый год','Christmas, winter traditions and celebrations','Рождество, зимние традиции и праздники','new year christmas winter holiday новый год рождество зима праздник'],
+['Star Wars','Звёздные войны','A galaxy far, far away','Далёкая-далёкая галактика','star wars jedi sith skywalker звёздные войны джедаи ситхи'],
+['Home Alone','Один дома','The famous Christmas movie','Знаменитый рождественский фильм','home alone kevin movie один дома кевин фильм'],
+['Cars','Автомобили','Supercars, racing and automotive history','Суперкары, гонки и история автомобилей','cars ferrari porsche mclaren автомобили феррари порше'],
+['Artists','Художники','Famous painters and their masterpieces','Знаменитые художники и их шедевры','artists painting art picasso художники живопись искусство'],
+['World History','Всемирная история','Events and people that shaped our world','События и люди, изменившие мир','world history ancient rome egypt история древний рим египет'],
+['Harry Potter','Гарри Поттер','Hogwarts, characters, spells and the wizarding world','Хогвартс, персонажи, заклинания и волшебный мир','harry potter hogwarts wizard spells гарри поттер хогвартс магия'],
+['Music Bands','Музыкальные группы','Famous bands, members, albums and music history','Знаменитые группы, участники, альбомы и история музыки','music bands queen beatles acdc nirvana metallica музыкальные группы'],
+['World Capitals','Столицы стран','Test your knowledge of countries and their capitals','Проверь знания стран и их столиц','world capitals countries geography столицы стран география'],
+['Space & Astronomy','Космос и астрономия','Planets, stars, galaxies and space exploration','Планеты, звёзды, галактики и освоение космоса','space astronomy planets stars космос астрономия планеты'],
 ];
+const T={en:{hero:'QUIZ <span>CHALLENGE</span>',intro:'Choose a category, test your knowledge and beat your score.',search:'Search quizzes...',none:'No quizzes found.',next:'Next question',retry:'Try again',home:'Back to categories',done:'Quiz completed!',result:'Your result:',correct:'Correct answer!',wrong:'Not quite! The correct answer is:',time:'Time is up! The correct answer is:',excellent:'Excellent result!',good:'Well done!',practice:'Good try! Keep practising!',q:'Question',sec:'sec'},ru:{hero:'МИР <span>ВИКТОРИН</span>',intro:'Выбирай категорию, проверяй свои знания и набирай очки.',search:'Поиск викторин...',none:'Ничего не найдено.',next:'Следующий вопрос',retry:'Попробовать снова',home:'Назад к категориям',done:'Викторина завершена!',result:'Твой результат:',correct:'Правильный ответ!',wrong:'Не совсем! Правильный ответ:',time:'Время вышло! Правильный ответ:',excellent:'Превосходный результат!',good:'Отличная работа!',practice:'Хорошая попытка! Продолжай тренироваться!',q:'Вопрос',sec:'сек.'}};
+// Each group contains ten bilingual fact questions. The original six quizzes have their own pools;
+// new categories select the closest relevant topic pool.
+const Q={
+newyear:[
+['Which date is New Year’s Eve?','Какого числа отмечают канун Нового года?',['December 31','January 1','December 24','January 7'],['31 декабря','1 января','24 декабря','7 января'],0],['Which tree is commonly decorated at Christmas?','Какое дерево обычно украшают на Рождество?',['Fir tree','Oak','Palm','Birch'],['Ель','Дуб','Пальма','Берёза'],0],['Where did the decorated Christmas tree tradition become popular?','В какой стране стала популярной традиция украшать рождественскую ёлку?',['Germany','Japan','Brazil','Egypt'],['Германия','Япония','Бразилия','Египет'],0],['At what time does the New Year begin?','В какое время начинается Новый год?',['Midnight','Noon','Sunrise','Sunset'],['В полночь','В полдень','На рассвете','На закате'],0],['Which reindeer is famous for a red nose?','Какой олень известен красным носом?',['Rudolph','Dasher','Comet','Blitzen'],['Рудольф','Дэшер','Комета','Блитцен'],0],['Which month begins the calendar year?','Какой месяц начинает календарный год?',['January','March','December','April'],['Январь','Март','Декабрь','Апрель'],0],['What is often placed at the top of a Christmas tree?','Что часто ставят на верхушку ёлки?',['A star','A shoe','A clock','A book'],['Звезду','Ботинок','Часы','Книгу'],0],['Which season is December in the Northern Hemisphere?','Какое время года в декабре в Северном полушарии?',['Winter','Summer','Spring','Autumn'],['Зима','Лето','Весна','Осень'],0],['What do people exchange during holidays?','Чем люди обмениваются на праздники?',['Gifts','Keys','Maps','Tools'],['Подарками','Ключами','Картами','Инструментами'],0],['How many months are in a year?','Сколько месяцев в году?',['12','10','11','13'],['12','10','11','13'],0]],
+starwars:[['What is Luke Skywalker’s home planet?','Как называется родная планета Люка Скайуокера?',['Tatooine','Hoth','Endor','Naboo'],['Татуин','Хот','Эндор','Набу'],0],['What colour is Yoda’s lightsaber?','Какого цвета световой меч Йоды?',['Green','Blue','Red','Purple'],['Зелёный','Синий','Красный','Фиолетовый'],0],['Who is Luke Skywalker’s father?','Кто отец Люка Скайуокера?',['Darth Vader','Obi-Wan Kenobi','Han Solo','Palpatine'],['Дарт Вейдер','Оби-Ван Кеноби','Хан Соло','Палпатин'],0],['What is Han Solo’s ship called?','Как называется корабль Хана Соло?',['Millennium Falcon','X-wing','Star Destroyer','TIE Fighter'],['Тысячелетний сокол','Икс-крыл','Звёздный разрушитель','Истребитель СИД'],0],['What species is Chewbacca?','К какому виду относится Чубакка?',['Wookiee','Ewok','Twi’lek','Rodian'],['Вуки','Эвок','Тви’лек','Родианец'],0],['Who trains Luke on Dagobah?','Кто обучает Люка на Дагобе?',['Yoda','Mace Windu','Qui-Gon Jinn','Count Dooku'],['Йода','Мейс Винду','Квай-Гон Джинн','Граф Дуку'],0],['What is the traditional weapon of a Jedi?','Какое оружие традиционно используют джедаи?',['Lightsaber','Blaster','Bow','Spear'],['Световой меч','Бластер','Лук','Копьё'],0],['What is Princess Leia’s home planet?','Как называется родная планета принцессы Леи?',['Alderaan','Coruscant','Kashyyyk','Mustafar'],['Альдераан','Корусант','Кашиик','Мустафар'],0],['Who is the Emperor in the original trilogy?','Кто является Императором в оригинальной трилогии?',['Palpatine','Tarkin','Jabba','Thrawn'],['Палпатин','Таркин','Джабба','Траун'],0],['Who is Boba Fett’s father?','Кто отец Бобы Фетта?',['Jango Fett','Darth Maul','Count Dooku','Greedo'],['Джанго Фетт','Дарт Мол','Граф Дуку','Гридо'],0]],
+homealone:[['What is Kevin’s surname?','Какая фамилия у Кевина?',['McCallister','Murphy','Duncan','Smith'],['Маккалистер','Мёрфи','Дункан','Смит'],0],['Where does Kevin’s family travel?','Куда отправляется семья Кевина?',['Paris','London','Rome','Madrid'],['В Париж','В Лондон','В Рим','В Мадрид'],0],['What are the names of the two burglars?','Как зовут двух грабителей?',['Harry and Marv','Tom and Jerry','Mike and Joe','Ben and Sam'],['Гарри и Марв','Том и Джерри','Майк и Джо','Бен и Сэм'],0],['In which city does the first film take place?','В каком городе происходит действие первого фильма?',['Chicago','New York','Boston','Los Angeles'],['Чикаго','Нью-Йорк','Бостон','Лос-Анджелес'],0],['Who plays Kevin?','Кто играет Кевина?',['Macaulay Culkin','Daniel Radcliffe','Elijah Wood','Tom Holland'],['Маколей Калкин','Дэниел Рэдклифф','Элайджа Вуд','Том Холланд'],0],['Which holiday is the film associated with?','С каким праздником связан фильм?',['Christmas','Halloween','Easter','Thanksgiving'],['Рождество','Хэллоуин','Пасха','День благодарения'],0],['What is Kevin’s older brother’s name?','Как зовут старшего брата Кевина?',['Buzz','Fuller','Jeff','Mitch'],['Базз','Фуллер','Джефф','Митч'],0],['Who directed Home Alone?','Кто снял фильм «Один дома»?',['Chris Columbus','Steven Spielberg','Tim Burton','James Cameron'],['Крис Коламбус','Стивен Спилберг','Тим Бёртон','Джеймс Кэмерон'],0],['In what year was Home Alone released?','В каком году вышел фильм «Один дома»?',['1990','1985','1995','2000'],['1990','1985','1995','2000'],0],['What is the name of Kevin’s neighbour, an elderly man?','Как зовут пожилого соседа Кевина?',['Marley','Murphy','Mitch','Peter'],['Марли','Мёрфи','Митч','Питер'],0]],
+cars:[['Which company makes the Ferrari F40?','Какая компания выпустила Ferrari F40?',['Ferrari','Porsche','Lamborghini','McLaren'],['Ferrari','Porsche','Lamborghini','McLaren'],0],['In which country is Ferrari based?','В какой стране находится штаб-квартира Ferrari?',['Italy','Germany','France','Japan'],['Италия','Германия','Франция','Япония'],0],['Which car is famous for gull-wing doors?','Какой автомобиль известен дверями типа «крыло чайки»?',['DeLorean DMC-12','Toyota Supra','Mazda RX-7','Ferrari F40'],['DeLorean DMC-12','Toyota Supra','Mazda RX-7','Ferrari F40'],0],['Which company created the McLaren F1?','Какая компания создала McLaren F1?',['McLaren','Ford','BMW','Honda'],['McLaren','Ford','BMW','Honda'],0],['What does ABS help prevent?','От чего помогает система ABS?',['Wheel lock-up','Engine overheating','Fuel leakage','Tyre wear'],['От блокировки колёс','От перегрева двигателя','От утечки топлива','От износа шин'],0],['Which country is Porsche from?','Из какой страны родом Porsche?',['Germany','Italy','USA','Sweden'],['Германия','Италия','США','Швеция'],0],['How many cylinders does a V8 engine have?','Сколько цилиндров у двигателя V8?',['Eight','Six','Four','Ten'],['Восемь','Шесть','Четыре','Десять'],0],['Which car appears in Back to the Future?','Какой автомобиль появляется в фильме «Назад в будущее»?',['DeLorean','Ferrari F40','Porsche 911','Ford GT'],['DeLorean','Ferrari F40','Porsche 911','Ford GT'],0],['Which company makes the Mustang?','Какая компания выпускает Mustang?',['Ford','Chevrolet','Dodge','Nissan'],['Ford','Chevrolet','Dodge','Nissan'],0],['What is the Nürburgring?','Что такое Нюрбургринг?',['A race circuit','A car company','A car model','A museum'],['Гоночная трасса','Автомобильная компания','Модель машины','Музей'],0]],
+art:[['Who painted the Mona Lisa?','Кто написал «Мону Лизу»?',['Leonardo da Vinci','Van Gogh','Picasso','Monet'],['Леонардо да Винчи','Ван Гог','Пикассо','Моне'],0],['Who painted The Starry Night?','Кто написал «Звёздную ночь»?',['Vincent van Gogh','Claude Monet','Salvador Dalí','Rembrandt'],['Винсент ван Гог','Клод Моне','Сальвадор Дали','Рембрандт'],0],['Which artist is associated with Cubism?','Какой художник связан с кубизмом?',['Pablo Picasso','Michelangelo','Raphael','Turner'],['Пабло Пикассо','Микеланджело','Рафаэль','Тёрнер'],0],['Who painted the Sistine Chapel ceiling?','Кто расписал потолок Сикстинской капеллы?',['Michelangelo','Leonardo da Vinci','Caravaggio','Goya'],['Микеланджело','Леонардо да Винчи','Караваджо','Гойя'],0],['Who painted Water Lilies?','Кто написал «Кувшинки»?',['Claude Monet','Edvard Munch','Picasso','Dürer'],['Клод Моне','Эдвард Мунк','Пикассо','Дюрер'],0],['Who created The Persistence of Memory?','Кто создал «Постоянство памяти»?',['Salvador Dalí','Van Gogh','Monet','Klimt'],['Сальвадор Дали','Ван Гог','Моне','Климт'],0],['Who painted The Scream?','Кто написал «Крик»?',['Edvard Munch','Rembrandt','Raphael','Vermeer'],['Эдвард Мунк','Рембрандт','Рафаэль','Вермеер'],0],['What is sculpture?','Что такое скульптура?',['A three-dimensional artwork','A poem','A musical instrument','A photograph'],['Трёхмерное произведение искусства','Стихотворение','Музыкальный инструмент','Фотография'],0],['Which movement is associated with Monet?','С каким направлением связан Моне?',['Impressionism','Cubism','Surrealism','Baroque'],['Импрессионизм','Кубизм','Сюрреализм','Барокко'],0],['Who painted Girl with a Pearl Earring?','Кто написал «Девушку с жемчужной серёжкой»?',['Johannes Vermeer','Rembrandt','Picasso','Dalí'],['Ян Вермеер','Рембрандт','Пикассо','Дали'],0]],
+history:[['Which civilisation built the pyramids at Giza?','Какая цивилизация построила пирамиды в Гизе?',['Ancient Egyptians','Romans','Greeks','Persians'],['Древние египтяне','Римляне','Греки','Персы'],0],['Who was the first Roman emperor?','Кто был первым римским императором?',['Augustus','Julius Caesar','Nero','Trajan'],['Октавиан Август','Юлий Цезарь','Нерон','Траян'],0],['In which year did World War II end?','В каком году закончилась Вторая мировая война?',['1945','1939','1918','1950'],['1945','1939','1918','1950'],0],['Which city was the Byzantine capital?','Какой город был столицей Византийской империи?',['Constantinople','Athens','Rome','Alexandria'],['Константинополь','Афины','Рим','Александрия'],0],['Who was the first person to walk on the Moon?','Кто первым ступил на Луну?',['Neil Armstrong','Yuri Gagarin','Buzz Aldrin','John Glenn'],['Нил Армстронг','Юрий Гагарин','Базз Олдрин','Джон Гленн'],0],['Which ancient city was buried by Vesuvius?','Какой древний город был погребён извержением Везувия?',['Pompeii','Sparta','Carthage','Troy'],['Помпеи','Спарта','Карфаген','Троя'],0],['Which document was sealed in England in 1215?','Какой документ был подписан в Англии в 1215 году?',['Magna Carta','Declaration of Independence','Treaty of Versailles','Bill of Rights'],['Великая хартия вольностей','Декларация независимости','Версальский договор','Билль о правах'],0],['Who was the first US president?','Кто был первым президентом США?',['George Washington','Abraham Lincoln','Thomas Jefferson','John Adams'],['Джордж Вашингтон','Авраам Линкольн','Томас Джефферсон','Джон Адамс'],0],['Which empire did Genghis Khan establish?','Какую империю основал Чингисхан?',['Mongol Empire','Roman Empire','Ottoman Empire','Mali Empire'],['Монгольскую империю','Римскую империю','Османскую империю','Империю Мали'],0],['In which year did the Berlin Wall fall?','В каком году пала Берлинская стена?',['1989','1975','1995','1961'],['1989','1975','1995','1961'],0]],
+math:[['What is 7 + 8?','Сколько будет 7 + 8?',['15','14','16','13'],['15','14','16','13'],0],['What is 9 × 6?','Сколько будет 9 × 6?',['54','45','56','49'],['54','45','56','49'],0],['What is half of 36?','Чему равна половина числа 36?',['18','16','20','12'],['18','16','20','12'],0],['Which fraction equals one half?','Какая дробь равна одной второй?',['2/4','1/3','3/5','2/3'],['2/4','1/3','3/5','2/3'],0],['What is 25% of 80?','Сколько составляет 25% от 80?',['20','25','15','40'],['20','25','15','40'],0],['Solve: x + 7 = 19.','Реши уравнение: x + 7 = 19.',['12','11','13','26'],['12','11','13','26'],0],['What is the area of a 5 cm by 4 cm rectangle?','Чему равна площадь прямоугольника 5 см на 4 см?',['20 cm²','9 cm²','18 cm²','10 cm²'],['20 см²','9 см²','18 см²','10 см²'],0],['What is the square root of 81?','Чему равен квадратный корень из 81?',['9','8','7','6'],['9','8','7','6'],0],['What is the sum of angles in a triangle?','Чему равна сумма углов треугольника?',['180°','90°','270°','360°'],['180°','90°','270°','360°'],0],['What is 3² + 4²?','Сколько будет 3² + 4²?',['25','24','49','14'],['25','24','49','14'],0]],
+technology:[['What does CPU stand for?','Как расшифровывается CPU?',['Central Processing Unit','Computer Power Utility','Core Program User','Central Print Unit'],['Центральный процессор','Устройство питания компьютера','Пользователь основной программы','Центральный печатный блок'],0],['Which component stores data temporarily while programs run?','Какой компонент временно хранит данные во время работы программ?',['RAM','SSD','Power supply','Monitor'],['ОЗУ','SSD','Блок питания','Монитор'],0],['What does a GPU primarily process?','Что в первую очередь обрабатывает GPU?',['Graphics','Fuel injection','Microphone sound only','Network cables'],['Графику','Впрыск топлива','Только звук микрофона','Сетевые кабели'],0],['What does URL identify?','Что обозначает URL?',['A web resource address','A battery','A processor socket','A compression method'],['Адрес интернет-ресурса','Аккумулятор','Разъём процессора','Метод сжатия'],0],['Which device makes physical objects from 3D models?','Какое устройство создаёт физические объекты по 3D-моделям?',['3D printer','Router','Projector','Speaker'],['3D-принтер','Маршрутизатор','Проектор','Колонка'],0],['What is an algorithm?','Что такое алгоритм?',['A sequence of steps to solve a problem','A type of screen','A battery','A computer case'],['Последовательность шагов для решения задачи','Тип экрана','Батарея','Корпус компьютера'],0],['Which invention transmitted messages electrically over long distances?','Какое изобретение передавало сообщения на расстояние с помощью электричества?',['Telegraph','Microwave oven','Photocopier','Digital camera'],['Телеграф','Микроволновая печь','Копировальный аппарат','Цифровая камера'],0],['What does a robot sensor do?','Для чего нужен датчик робота?',['Detects its environment','Paints its body','Replaces every motor','Stores fuel'],['Получает информацию об окружающей среде','Красит корпус','Заменяет все моторы','Хранит топливо'],0],['What is a crewed spacecraft?','Что такое пилотируемый космический аппарат?',['A spacecraft carrying people','A cargo container','A weather balloon','A submarine'],['Космический аппарат для перевозки людей','Грузовой контейнер','Метеозонд','Подводная лодка'],0],['What creates lift on a conventional aeroplane?','Что создаёт подъёмную силу обычного самолёта?',['Wings','Landing gear','Tail light','Cabin seats'],['Крылья','Шасси','Задний фонарь','Пассажирские кресла'],0]],
+geography:[['Which is the largest country by land area?','Какая страна занимает наибольшую площадь?',['Russia','Canada','China','United States'],['Россия','Канада','Китай','США'],0],['What is the capital of Japan?','Какова столица Японии?',['Tokyo','Kyoto','Osaka','Sapporo'],['Токио','Киото','Осака','Саппоро'],0],['Which country has a maple leaf on its flag?','На флаге какой страны изображён кленовый лист?',['Canada','Austria','Denmark','Peru'],['Канада','Австрия','Дания','Перу'],0],['Which river flows through Egypt?','Какая река протекает через Египет?',['Nile','Danube','Rhine','Amazon'],['Нил','Дунай','Рейн','Амазонка'],0],['Which is the largest ocean?','Какой океан самый большой?',['Pacific Ocean','Atlantic Ocean','Indian Ocean','Arctic Ocean'],['Тихий океан','Атлантический океан','Индийский океан','Северный Ледовитый океан'],0],['Which country has Lisbon as its capital?','В какой стране столицей является Лиссабон?',['Portugal','Spain','Italy','Greece'],['Португалия','Испания','Италия','Греция'],0],['Which mountain range separates France and Spain?','Какая горная цепь отделяет Францию от Испании?',['Pyrenees','Alps','Carpathians','Apennines'],['Пиренеи','Альпы','Карпаты','Апеннины'],0],['Which lake is the world’s deepest?','Какое озеро является самым глубоким в мире?',['Lake Baikal','Lake Victoria','Lake Erie','Lake Geneva'],['Озеро Байкал','Озеро Виктория','Озеро Эри','Женевское озеро'],0],['What is the capital of Australia?','Какова столица Австралии?',['Canberra','Sydney','Melbourne','Perth'],['Канберра','Сидней','Мельбурн','Перт'],0],['Which continent contains the Sahara?','На каком материке находится Сахара?',['Africa','Asia','South America','Europe'],['Африка','Азия','Южная Америка','Европа'],0]],
+fun:[['Which company created the Mario game series?','Какая компания создала серию игр Mario?',['Nintendo','Sega','Atari','Valve'],['Nintendo','Sega','Atari','Valve'],0],['In chess, which piece moves in an L-shape?','Какая шахматная фигура ходит буквой «Г»?',['Knight','Bishop','Rook','Queen'],['Конь','Слон','Ладья','Ферзь'],0],['What comes next: 2, 4, 8, 16?','Какое число следует дальше: 2, 4, 8, 16?',['32','24','30','18'],['32','24','30','18'],0],['Which animal is the largest living mammal?','Какое животное является крупнейшим ныне живущим млекопитающим?',['Blue whale','African elephant','Giraffe','Hippopotamus'],['Синий кит','Африканский слон','Жираф','Бегемот'],0],['Which animal has three hearts?','У какого животного три сердца?',['Octopus','Dolphin','Penguin','Turtle'],['Осьминог','Дельфин','Пингвин','Черепаха'],0],['What is the fastest land animal?','Какое наземное животное самое быстрое?',['Cheetah','Lion','Horse','Kangaroo'],['Гепард','Лев','Лошадь','Кенгуру'],0],['Which planet has the Great Red Spot?','На какой планете находится Большое красное пятно?',['Jupiter','Mars','Venus','Mercury'],['Юпитер','Марс','Венера','Меркурий'],0],['How many sides does a hexagon have?','Сколько сторон у шестиугольника?',['Six','Five','Seven','Eight'],['Шесть','Пять','Семь','Восемь'],0],['Which film series features Indiana Jones?','В какой серии фильмов появляется Индиана Джонс?',['Indiana Jones','Rocky','Toy Story','The Matrix'],['«Индиана Джонс»','«Рокки»','«История игрушек»','«Матрица»'],0],['What is the largest planet in our Solar System?','Какая планета самая большая в Солнечной системе?',['Jupiter','Saturn','Earth','Neptune'],['Юпитер','Сатурн','Земля','Нептун'],0]],
 
-let lang = 'en';
-let currentCategory = 0;
-let currentQuestion = 0;
-let score = 0;
-let timer = null;
-let timeLeft = 20;
-let answered = false;
-let currentQuestions = [];
-
-function t(key) {
-  return translations[lang][key];
-}
-function updateSeoContent() {
-  const content = {
-en: [
-  'Explore Free Online Quiz Categories',
-  'Welcome to R GAMES! Play free online quizzes, trivia games and knowledge challenges. Choose your favourite topic and test what you know.',
-  'New Year and Christmas Quizzes',
-  'Star Wars Quizzes',
-  'Home Alone and Movie Quizzes',
-  'Cars and Supercars Quizzes',
-  'Art and Artists Quizzes',
-  'World History Quizzes'
+harrypotter:[
+['What is the name of the school Harry Potter attends?','Как называется школа, в которой учится Гарри Поттер?',['Hogwarts','Beauxbatons','Durmstrang','Ilvermorny'],['Хогвартс','Бобатон','Дурмстранг','Ильверморни'],0],
+['Which house is Harry sorted into?','На какой факультет распределяют Гарри?',['Gryffindor','Slytherin','Ravenclaw','Hufflepuff'],['Гриффиндор','Слизерин','Когтевран','Пуффендуй'],0],
+['What is the name of Harry’s owl?','Как зовут сову Гарри?',['Hedwig','Errol','Pigwidgeon','Fawkes'],['Букля','Эрол','Пигвид','Фоукс'],0],
+['Who is the headmaster of Hogwarts for most of the series?','Кто большую часть истории является директором Хогвартса?',['Albus Dumbledore','Severus Snape','Minerva McGonagall','Rubeus Hagrid'],['Альбус Дамблдор','Северус Снегг','Минерва Макгонагалл','Рубеус Хагрид'],0],
+['What position does Harry play in Quidditch?','На какой позиции Гарри играет в квиддич?',['Seeker','Keeper','Beater','Chaser'],['Ловец','Вратарь','Загонщик','Охотник'],0],
+['What is the name of the Weasley family home?','Как называется дом семьи Уизли?',['The Burrow','Number Twelve','Shell Cottage','Malfoy Manor'],['Нора','Дом номер двенадцать','Ракушечный дом','Поместье Малфоев'],0],
+['Which platform does the Hogwarts Express leave from?','С какой платформы отправляется Хогвартс-экспресс?',['Platform 9¾','Platform 7½','Platform 10','Platform 8'],['Платформа 9¾','Платформа 7½','Платформа 10','Платформа 8'],0],
+['What is Hermione’s surname?','Какая фамилия у Гермионы?',['Granger','Weasley','Lovegood','Bones'],['Грейнджер','Уизли','Лавгуд','Боунс'],0],
+['Which object reveals the deepest desire of the person looking into it?','Какой предмет показывает самое сокровенное желание смотрящего?',['Mirror of Erised','Pensieve','Marauder’s Map','Time-Turner'],['Зеркало Еиналеж','Омут памяти','Карта Мародёров','Маховик времени'],0],
+['What is the name of Hagrid’s three-headed dog?','Как зовут трёхголового пса Хагрида?',['Fluffy','Fang','Norbert','Buckbeak'],['Пушок','Клык','Норберт','Клювокрыл'],0],
+['Which spell is used to disarm an opponent?','Какое заклинание выбивает оружие из рук противника?',['Expelliarmus','Lumos','Alohomora','Accio'],['Экспеллиармус','Люмос','Алохомора','Акцио'],0],
+['What magical object contains memories that can be revisited?','Какой магический предмет позволяет заново просматривать воспоминания?',['Pensieve','Deluminator','Sneakoscope','Remembrall'],['Омут памяти','Делюминатор','Секретоскоп','Напоминалка'],0],
+['Who teaches Potions during Harry’s first five years at Hogwarts?','Кто преподаёт зельеварение в первые пять лет учёбы Гарри?',['Severus Snape','Filius Flitwick','Remus Lupin','Horace Slughorn'],['Северус Снегг','Филиус Флитвик','Римус Люпин','Гораций Слизнорт'],0],
+['What is the name of Ron’s pet rat?','Как зовут крысу Рона?',['Scabbers','Crookshanks','Aragog','Trevor'],['Короста','Живоглот','Арагог','Тревор'],0],
+['Which magical sport is played on flying broomsticks?','В какую магическую игру играют на летающих мётлах?',['Quidditch','Gobstones','Exploding Snap','Wizard’s Chess'],['Квиддич','Взрывные шарики','Взрывные карты','Волшебные шахматы'],0]
 ],
-    ru: [
-      'Исследуй категории онлайн-викторин',
-      'Добро пожаловать в R GAMES! Играй в бесплатные онлайн-викторины, отвечай на вопросы и проверяй свои знания на разные темы.',
-      'Новогодние и рождественские викторины',
-      'Викторины по вселенной «Звёздных войн»',
-      'Викторины по фильму «Один дома» и кино',
-      'Викторины об автомобилях и суперкарах',
-      'Викторины об искусстве и художниках',
-      'Викторины по всемирной истории'
-    ]
-  };
+musicbands:[
+['Which band released the song “Bohemian Rhapsody”?','Какая группа выпустила песню «Bohemian Rhapsody»?',['Queen','The Beatles','ABBA','Nirvana'],['Queen','The Beatles','ABBA','Nirvana'],0],
+['Which city did The Beatles come from?','Из какого города родом The Beatles?',['Liverpool','London','Manchester','Birmingham'],['Ливерпуль','Лондон','Манчестер','Бирмингем'],0],
+['Who was the lead singer of Queen?','Кто был вокалистом группы Queen?',['Freddie Mercury','Mick Jagger','David Bowie','Elton John'],['Фредди Меркьюри','Мик Джаггер','Дэвид Боуи','Элтон Джон'],0],
+['Which band recorded “Smells Like Teen Spirit”?','Какая группа записала «Smells Like Teen Spirit»?',['Nirvana','Metallica','Oasis','Radiohead'],['Nirvana','Metallica','Oasis','Radiohead'],0],
+['Which Swedish group won Eurovision in 1974 with “Waterloo”?','Какая шведская группа победила на «Евровидении» в 1974 году с песней «Waterloo»?',['ABBA','Roxette','Ace of Base','Europe'],['ABBA','Roxette','Ace of Base','Europe'],0],
+['Which band is known for the album “The Dark Side of the Moon”?','Какая группа известна альбомом «The Dark Side of the Moon»?',['Pink Floyd','The Who','The Doors','Genesis'],['Pink Floyd','The Who','The Doors','Genesis'],0],
+['Who was the original lead singer of AC/DC?','Кто был первым вокалистом AC/DC?',['Bon Scott','Brian Johnson','Axl Rose','Robert Plant'],['Бон Скотт','Брайан Джонсон','Эксл Роуз','Роберт Плант'],0],
+['Which band released “Nothing Else Matters”?','Какая группа выпустила «Nothing Else Matters»?',['Metallica','Iron Maiden','Kiss','Megadeth'],['Metallica','Iron Maiden','Kiss','Megadeth'],0],
+['Which group had members John, Paul, George and Ringo?','В какой группе играли Джон, Пол, Джордж и Ринго?',['The Beatles','The Rolling Stones','Queen','The Kinks'],['The Beatles','The Rolling Stones','Queen','The Kinks'],0],
+['Which band recorded “Hotel California”?','Какая группа записала «Hotel California»?',['Eagles','Fleetwood Mac','Journey','Bon Jovi'],['Eagles','Fleetwood Mac','Journey','Bon Jovi'],0],
+['Which band is associated with the album “Nevermind”?','С какой группой связан альбом «Nevermind»?',['Nirvana','Pearl Jam','Soundgarden','Green Day'],['Nirvana','Pearl Jam','Soundgarden','Green Day'],0],
+['Which Irish band released “With or Without You”?','Какая ирландская группа выпустила «With or Without You»?',['U2','The Cranberries','The Corrs','Thin Lizzy'],['U2','The Cranberries','The Corrs','Thin Lizzy'],0],
+['Which band is famous for the song “Stairway to Heaven”?','Какая группа знаменита песней «Stairway to Heaven»?',['Led Zeppelin','Deep Purple','Black Sabbath','The Who'],['Led Zeppelin','Deep Purple','Black Sabbath','The Who'],0],
+['Which band features the brothers Liam and Noel Gallagher?','В какой группе выступали братья Лиам и Ноэл Галлахеры?',['Oasis','Blur','Pulp','Radiohead'],['Oasis','Blur','Pulp','Radiohead'],0],
+['Which band released “Yellow Submarine”?','Какая группа выпустила «Yellow Submarine»?',['The Beatles','Queen','ABBA','The Beach Boys'],['The Beatles','Queen','ABBA','The Beach Boys'],0]
+],
+capitals:[
+['Germany’s capital is which city?','Столицей Германии является город…',['Berlin','Munich','Hamburg','Frankfurt'],['Берлин','Мюнхен','Гамбург','Франкфурт'],0],
+['France’s capital is which city?','Столицей Франции является город…',['Paris','Lyon','Marseille','Nice'],['Париж','Лион','Марсель','Ницца'],0],
+['Italy’s capital is which city?','Столицей Италии является город…',['Rome','Milan','Venice','Naples'],['Рим','Милан','Венеция','Неаполь'],0],
+['Spain’s capital is which city?','Столицей Испании является город…',['Madrid','Barcelona','Seville','Valencia'],['Мадрид','Барселона','Севилья','Валенсия'],0],
+['Japan’s capital is which city?','Столицей Японии является город…',['Tokyo','Kyoto','Osaka','Nagoya'],['Токио','Киото','Осака','Нагоя'],0],
+['Canada’s capital is which city?','Столицей Канады является город…',['Ottawa','Toronto','Vancouver','Montreal'],['Оттава','Торонто','Ванкувер','Монреаль'],0],
+['Australia’s capital is which city?','Столицей Австралии является город…',['Canberra','Sydney','Melbourne','Perth'],['Канберра','Сидней','Мельбурн','Перт'],0],
+['Brazil’s capital is which city?','Столицей Бразилии является город…',['Brasília','Rio de Janeiro','São Paulo','Salvador'],['Бразилиа','Рио-де-Жанейро','Сан-Паулу','Салвадор'],0],
+['Egypt’s capital is which city?','Столицей Египта является город…',['Cairo','Alexandria','Giza','Luxor'],['Каир','Александрия','Гиза','Луксор'],0],
+['Greece’s capital is which city?','Столицей Греции является город…',['Athens','Thessaloniki','Patras','Heraklion'],['Афины','Салоники','Патры','Ираклион'],0],
+['Norway’s capital is which city?','Столицей Норвегии является город…',['Oslo','Bergen','Trondheim','Stavanger'],['Осло','Берген','Тронхейм','Ставангер'],0],
+['South Korea’s capital is which city?','Столицей Южной Кореи является город…',['Seoul','Busan','Incheon','Daegu'],['Сеул','Пусан','Инчхон','Тэгу'],0],
+['Argentina’s capital is which city?','Столицей Аргентины является город…',['Buenos Aires','Córdoba','Rosario','Mendoza'],['Буэнос-Айрес','Кордова','Росарио','Мендоса'],0],
+['Turkey’s capital is which city?','Столицей Турции является город…',['Ankara','Istanbul','Izmir','Antalya'],['Анкара','Стамбул','Измир','Анталья'],0],
+['New Zealand’s capital is which city?','Столицей Новой Зеландии является город…',['Wellington','Auckland','Christchurch','Hamilton'],['Веллингтон','Окленд','Крайстчерч','Гамильтон'],0]
+],
+space:[
+['Which planet is closest to the Sun?','Какая планета находится ближе всего к Солнцу?',['Mercury','Venus','Earth','Mars'],['Меркурий','Венера','Земля','Марс'],0],
+['Which is the largest planet in the Solar System?','Какая планета самая большая в Солнечной системе?',['Jupiter','Saturn','Neptune','Earth'],['Юпитер','Сатурн','Нептун','Земля'],0],
+['What is the name of our galaxy?','Как называется наша галактика?',['The Milky Way','Andromeda','Whirlpool Galaxy','Sombrero Galaxy'],['Млечный Путь','Андромеда','Галактика Водоворот','Галактика Сомбреро'],0],
+['Which planet is known as the Red Planet?','Какую планету называют Красной планетой?',['Mars','Venus','Mercury','Jupiter'],['Марс','Венера','Меркурий','Юпитер'],0],
+['What is the name of Earth’s natural satellite?','Как называется естественный спутник Земли?',['The Moon','Phobos','Europa','Titan'],['Луна','Фобос','Европа','Титан'],0],
+['Which star is at the centre of our Solar System?','Какая звезда находится в центре Солнечной системы?',['The Sun','Sirius','Polaris','Vega'],['Солнце','Сириус','Полярная звезда','Вега'],0],
+['Which planet has the most prominent ring system?','У какой планеты наиболее заметная система колец?',['Saturn','Mars','Earth','Mercury'],['Сатурн','Марс','Земля','Меркурий'],0],
+['Who was the first human in space?','Кто первым из людей побывал в космосе?',['Yuri Gagarin','Neil Armstrong','Alexei Leonov','John Glenn'],['Юрий Гагарин','Нил Армстронг','Алексей Леонов','Джон Гленн'],0],
+['What force keeps planets in orbit around the Sun?','Какая сила удерживает планеты на орбитах вокруг Солнца?',['Gravity','Magnetism','Friction','Electricity'],['Гравитация','Магнетизм','Трение','Электричество'],0],
+['Which planet is famous for the Great Red Spot?','Какая планета знаменита Большим красным пятном?',['Jupiter','Neptune','Venus','Uranus'],['Юпитер','Нептун','Венера','Уран'],0],
+['What is a light-year a measure of?','Что измеряется световым годом?',['Distance','Time','Brightness','Mass'],['Расстояние','Время','Яркость','Масса'],0],
+['Which space telescope launched in 1990?','Какой космический телескоп был запущен в 1990 году?',['Hubble Space Telescope','James Webb Space Telescope','Kepler','Chandra'],['Космический телескоп «Хаббл»','Космический телескоп «Джеймс Уэбб»','Кеплер','Чандра'],0],
+['Which planet rotates on its side?','Какая планета вращается словно «на боку»?',['Uranus','Mars','Mercury','Earth'],['Уран','Марс','Меркурий','Земля'],0],
+['What is the name of the first artificial satellite?','Как назывался первый искусственный спутник Земли?',['Sputnik 1','Explorer 1','Vostok 1','Luna 2'],['Спутник-1','Эксплорер-1','Восток-1','Луна-2'],0],
+['Which planet is farthest from the Sun among the eight planets?','Какая из восьми планет находится дальше всего от Солнца?',['Neptune','Uranus','Saturn','Jupiter'],['Нептун','Уран','Сатурн','Юпитер'],0]
+]
 
-  const texts = {
-    en: [
-      'Explore Christmas traditions, winter celebrations and New Year trivia.',
-      'Test your knowledge of the Star Wars galaxy, Jedi, Sith, characters and spaceships.',
-      'Answer questions about Home Alone, famous films and movie characters.',
-      'Discover trivia about Ferrari, Porsche, McLaren, racing and automotive history.',
-      'Explore famous painters, masterpieces, museums and art history.',
-      'Test your knowledge of ancient civilizations, historical events and influential people.'
-    ],
-    ru: [
-      'Проверь свои знания о Рождестве, Новом годе, зимних традициях и праздниках.',
-      'Узнай, насколько хорошо ты знаешь галактику, джедаев, ситхов, персонажей и корабли Star Wars.',
-      'Ответь на вопросы о фильме «Один дома», известных фильмах и их героях.',
-      'Проверь знания о Ferrari, Porsche, McLaren, гонках и истории автомобилей.',
-      'Изучай творчество известных художников, картины, музеи и историю искусства.',
-      'Проверь знания о древних цивилизациях, исторических событиях и известных личностях.'
-    ]
-  };
-
-  const ids = [
-    'seoTitle', 'seoIntro', 'seoNewYear',
-    'seoStarWars', 'seoMovies', 'seoCars',
-    'seoArt', 'seoHistory'
-  ];
-
-  ids.forEach((id, i) => {
-    document.getElementById(id).textContent = content[lang][i];
-  });
-
-  const textIds = [
-    'seoNewYearText', 'seoStarWarsText',
-    'seoMoviesText', 'seoCarsText',
-    'seoArtText', 'seoHistoryText'
-  ];
-
-  textIds.forEach((id, i) => {
-    document.getElementById(id).textContent = texts[lang][i];
-  });
-}
-function toggleLanguage() {
-  lang = lang === 'en' ? 'ru' : 'en';
-  document.documentElement.lang = lang;
-  document.getElementById('langBtn').textContent = lang === 'en' ? 'RU' : 'EN';
-  document.getElementById('heroTitle').innerHTML = t('hero');
-  document.getElementById('heroText').textContent = t('intro');
-  document.getElementById('search').placeholder = t('search');
-  document.getElementById('noResults').textContent = t('noResults');
-  document.getElementById('nextBtn').textContent = t('next');
-  document.getElementById('retryBtn').textContent = t('retry');
-  document.getElementById('homeBtn').textContent = t('home');
-  renderCategories();
-  updateSeoContent();
-
-    if (!document.getElementById('quiz').classList.contains('hidden')) {
-    document.getElementById('categoryName').textContent =
-      translations[lang].categories[currentCategory][0];
-
-    renderQuestion();
-  }
-}
-
-function renderCategories() {
-  const grid = document.getElementById('categories');
-  grid.innerHTML = '';
-
-  translations[lang].categories.forEach((category, index) => {
-    const card = document.createElement('div');
-    card.className = 'category';
-    card.dataset.search = (category.join(' ') + ' ' + translations[lang === 'en' ? 'ru' : 'en'].categories[index].join(' ')).toLowerCase();
-
-    const title = document.createElement('h2');
-    title.textContent = category[0];
-
-    const description = document.createElement('p');
-    description.textContent = category[1];
-
-    const number = document.createElement('div');
-    number.className = 'number';
-    number.textContent = '10 QUESTIONS';
-
-    card.append(title, description, number);
-    card.addEventListener('click', () => startQuiz(index));
-    grid.appendChild(card);
-  });
-
-  filterCategories();
-}
-
-function filterCategories() {
-  const query = document.getElementById('search').value.trim().toLowerCase();
-  let visible = 0;
-
-  document.querySelectorAll('.category').forEach(card => {
-    const match = card.dataset.search.includes(query);
-    card.classList.toggle('hidden', !match);
-    if (match) visible++;
-  });
-
-  document.getElementById('noResults').classList.toggle('hidden', visible > 0);
-}
-
-document.getElementById('search').addEventListener('input', filterCategories);
-
-function startQuiz(index) {
-  currentCategory = index;
-  currentQuestion = 0;
-  score = 0;
-  currentQuestions = quizzes[index].map(q => ({
-    question: q[0],
-    answers: q[1].map((answer, i) => ({ text: answer, correct: i === q[2] })),
-  }));
-
-  const ruQuestions = [
-    [
-      ['В какой день во многих странах празднуют Новый год?', ['31 декабря', '24 декабря', '7 января', '1 февраля'], 0],
-      ['Какое растение традиционно связано с Рождеством?', ['Дуб', 'Пихта', 'Кактус', 'Бамбук'], 1],
-      ['В какой стране стала популярной традиция украшать рождественскую ёлку?', ['Германия', 'Бразилия', 'Япония', 'Египет'], 0],
-      ['До какого момента люди обычно ведут обратный отсчёт?', ['Восход солнца', 'Полночь', 'Обед', 'Закат'], 1],
-      ['Какой олень известен своим красным носом?', ['Дэшер', 'Рудольф', 'Комета', 'Блитцен'], 1],
-      ['Какой месяц начинает год?', ['Март', 'Январь', 'Декабрь', 'Апрель'], 1],
-      ['Что традиционно ставят на верхушку ёлки?', ['Звезду', 'Колокольчик', 'Свечу', 'Книгу'], 0],
-      ['Какое время года в декабре в Северном полушарии?', ['Лето', 'Весна', 'Зима', 'Осень'], 2],
-      ['Чем люди часто обмениваются на праздники?', ['Подарками', 'Ключами', 'Билетами', 'Картами'], 0],
-      ['Сколько месяцев в году?', ['10', '11', '12', '13'], 2]
-    ],
-    [
-      ['Как называется родная планета Люка Скайуокера?', ['Татуин', 'Хот', 'Эндор', 'Набу'], 0],
-      ['Какого цвета световой меч Йоды?', ['Синий', 'Зелёный', 'Красный', 'Фиолетовый'], 1],
-      ['Кем приходится Дарт Вейдер Люку?', ['Учителем', 'Другом', 'Отцом', 'Дядей'], 2],
-      ['Как называется корабль Хана Соло?', ['Икс-крыл', 'Тысячелетний сокол', 'Звёздный разрушитель', 'Истребитель СИД'], 1],
-      ['К какому виду относится Чубакка?', ['Эвок', 'Вуки', 'Тви’лек', 'Родианец'], 1],
-      ['Кто обучал Люка на Дагобе?', ['Йода', 'Мейс Винду', 'Квай-Гон Джинн', 'Дуку'], 0],
-      ['Какое оружие используют джедаи?', ['Бластер', 'Световой меч', 'Лук', 'Копьё'], 1],
-      ['Как называлась родная планета принцессы Леи?', ['Альдераан', 'Корусант', 'Кашиик', 'Мустафар'], 0],
-      ['Кто был Императором в оригинальной трилогии?', ['Палпатин', 'Таркин', 'Джабба', 'Траун'], 0],
-      ['Как зовут отца Бобы Фетта?', ['Джанго Фетт', 'Дарт Мол', 'Граф Дуку', 'Гридо'], 0]
-    ],
-    [
-      ['Какая фамилия у Кевина?', ['Маккалистер', 'Мёрфи', 'Дункан', 'Смит'], 0],
-      ['Куда отправляется семья Кевина?', ['В Париж', 'В Лондон', 'В Рим', 'В Мадрид'], 0],
-      ['Как зовут двух грабителей?', ['Гарри и Марв', 'Том и Джерри', 'Майк и Джо', 'Бен и Сэм'], 0],
-      ['В каком городе происходит действие фильма?', ['Нью-Йорк', 'Чикаго', 'Бостон', 'Лос-Анджелес'], 1],
-      ['Что использует Кевин, чтобы напугать грабителей?', ['Фильм', 'Радио', 'Телефон', 'Камеру'], 0],
-      ['Кто играет Кевина?', ['Маколей Калкин', 'Дэниел Рэдклифф', 'Элайджа Вуд', 'Том Холланд'], 0],
-      ['С каким праздником связан фильм?', ['Хэллоуин', 'Рождество', 'Пасха', 'Только Новый год'], 1],
-      ['Как зовут старшего брата Кевина?', ['Базз', 'Фуллер', 'Джефф', 'Митч'], 0],
-      ['Где живёт семья Кевина?', ['В большом доме', 'В отеле', 'В квартире', 'В домике'], 0],
-      ['Что Кевин часто говорит?', ['Сдачи не надо!', 'Я Бэтмен!', 'Беги!', 'Привет!'], 0]
-    ],
-    [
-      ['Какая компания выпустила Ferrari F40?', ['Ferrari', 'Porsche', 'Lamborghini', 'McLaren'], 0],
-      ['Где находится штаб-квартира Ferrari?', ['В Италии', 'В Германии', 'Во Франции', 'В Японии'], 0],
-      ['Какой автомобиль известен дверями типа «крыло чайки»?', ['DeLorean DMC-12', 'Toyota Supra', 'Mazda RX-7', 'Ferrari F40'], 0],
-      ['Какая компания создала McLaren F1?', ['McLaren', 'Ford', 'BMW', 'Honda'], 0],
-      ['От чего помогает система ABS?', ['От блокировки колёс', 'От перегрева двигателя', 'От утечки топлива', 'От износа шин'], 0],
-      ['Из какой страны родом Porsche?', ['Германия', 'Италия', 'США', 'Швеция'], 0],
-      ['Сколько цилиндров у типичного двигателя V8?', ['Восемь', 'Шесть', 'Четыре', 'Десять'], 0],
-      ['С каким автомобилем связан фильм «Назад в будущее»?', ['DeLorean', 'Ferrari F40', 'Porsche 911', 'Ford GT'], 0],
-      ['Какая компания выпускает Mustang?', ['Ford', 'Chevrolet', 'Dodge', 'Nissan'], 0],
-      ['Что такое Нюрбургринг?', ['Гоночная трасса', 'Автомобильная компания', 'Модель машины', 'Музей'], 0]
-    ],
-    [
-      ['Кто написал «Мону Лизу»?', ['Леонардо да Винчи', 'Ван Гог', 'Пикассо', 'Моне'], 0],
-      ['Кто написал «Звёздную ночь»?', ['Винсент ван Гог', 'Клод Моне', 'Сальвадор Дали', 'Рембрандт'], 0],
-      ['Какой художник связан с кубизмом?', ['Пабло Пикассо', 'Микеланджело', 'Рафаэль', 'Тёрнер'], 0],
-      ['Кто расписал потолок Сикстинской капеллы?', ['Микеланджело', 'Леонардо да Винчи', 'Караваджо', 'Гойя'], 0],
-      ['Кто написал серию картин «Кувшинки»?', ['Клод Моне', 'Эдвард Мунк', 'Пикассо', 'Дюрер'], 0],
-      ['Кто создал картину «Постоянство памяти»?', ['Сальвадор Дали', 'Ван Гог', 'Моне', 'Климт'], 0],
-      ['Кто написал картину «Крик»?', ['Эдвард Мунк', 'Рембрандт', 'Рафаэль', 'Вермеер'], 0],
-      ['Что такое скульптура?', ['Трёхмерное произведение искусства', 'Вид поэзии', 'Музыкальный инструмент', 'Фотография'], 0],
-      ['С каким направлением связан Клод Моне?', ['Импрессионизм', 'Кубизм', 'Сюрреализм', 'Барокко'], 0],
-      ['Кто написал «Девушку с жемчужной серёжкой»?', ['Ян Вермеер', 'Рембрандт', 'Пикассо', 'Дали'], 0]
-    ],
-    [
-      ['Какая цивилизация построила пирамиды в Гизе?', ['Древние египтяне', 'Римляне', 'Греки', 'Персы'], 0],
-      ['Кто был первым римским императором?', ['Октавиан Август', 'Юлий Цезарь', 'Нерон', 'Траян'], 0],
-      ['В каком году закончилась Вторая мировая война?', ['1945', '1939', '1918', '1950'], 0],
-      ['Какой город был столицей Византийской империи?', ['Константинополь', 'Афины', 'Рим', 'Александрия'], 0],
-      ['Кто первым ступил на Луну?', ['Нил Армстронг', 'Юрий Гагарин', 'Базз Олдрин', 'Джон Гленн'], 0],
-      ['Какой древний город был погребён извержением Везувия?', ['Помпеи', 'Спарта', 'Карфаген', 'Троя'], 0],
-      ['Какой документ был подписан в Англии в 1215 году?', ['Великая хартия вольностей', 'Декларация независимости', 'Версальский договор', 'Билль о правах'], 0],
-      ['Кто был первым президентом США?', ['Джордж Вашингтон', 'Авраам Линкольн', 'Томас Джефферсон', 'Джон Адамс'], 0],
-      ['Какой империей правил Чингисхан?', ['Монгольской империей', 'Римской империей', 'Османской империей', 'Империей Мали'], 0],
-      ['В каком году пала Берлинская стена?', ['1989', '1975', '1995', '1961'], 0]
-    ]
-  ];
-
-  if (lang === 'ru') {
-    currentQuestions = ruQuestions[index].map(q => ({
-      question: q[0],
-      answers: q[1].map((answer, i) => ({ text: answer, correct: i === q[2] }))
-    }));
-  }
-
-  document.getElementById('home').classList.add('hidden');
-  document.getElementById('result').classList.add('hidden');
-  document.getElementById('quiz').classList.remove('hidden');
-  document.getElementById('categoryName').textContent = translations[lang].categories[index][0];
-
-  renderQuestion();
-}
-
-function renderQuestion() {
-  clearInterval(timer);
-  answered = false;
-  timeLeft = 20;
-
-  const q = currentQuestions[currentQuestion];
-  document.getElementById('counter').textContent =
-    `${t('question')} ${currentQuestion + 1}/10`;
-  document.getElementById('question').textContent = q.question;
-  document.getElementById('feedback').textContent = '';
-  document.getElementById('nextBtn').classList.add('hidden');
-  document.getElementById('progress').style.width =
-    `${currentQuestion / 10 * 100}%`;
-
-  const shuffled = [...q.answers].sort(() => Math.random() - 0.5);
-  const answersBox = document.getElementById('answers');
-  answersBox.innerHTML = '';
-
-  shuffled.forEach(answer => {
-    const btn = document.createElement('button');
-    btn.className = 'answer';
-    btn.textContent = answer.text;
-    btn.addEventListener('click', () => selectAnswer(btn, answer));
-    answersBox.appendChild(btn);
-  });
-
-  updateTimer();
-  timer = setInterval(() => {
-    timeLeft--;
-    updateTimer();
-    if (timeLeft <= 0) {
-      clearInterval(timer);
-      revealAnswer(null);
-    }
-  }, 1000);
-}
-
-function updateTimer() {
-  document.getElementById('timer').textContent =
-    `${timeLeft} ${t('seconds')}`;
-}
-
-function selectAnswer(button, answer) {
-  if (answered) return;
-
-  if (answer.correct) score++;
-  revealAnswer(answer);
-}
-
-function revealAnswer(selected) {
-  if (answered) return;
-  answered = true;
-  clearInterval(timer);
-
-  const buttons = document.querySelectorAll('.answer');
-  let correctText = '';
-
-  buttons.forEach(button => {
-    const answer = currentQuestions[currentQuestion].answers
-      .find(a => a.text === button.textContent);
-
-    button.disabled = true;
-
-    if (answer.correct) {
-      button.classList.add('correct');
-      correctText = answer.text;
-    } else if (selected && answer.text === selected.text) {
-      button.classList.add('wrong');
-    }
-  });
-
-  let message;
-
-  if (selected === null) {
-    message = `${t('timeUp')} ${correctText}`;
-  } else if (selected.correct) {
-    message = t('correct');
-  } else {
-    message = `${t('wrong')} ${correctText}`;
-  }
-
-  document.getElementById('feedback').textContent = message;
-  document.getElementById('nextBtn').classList.remove('hidden');
-  document.getElementById('nextBtn').textContent =
-    currentQuestion === 9 ? t('completed') : t('next');
-}
-
-function nextQuestion() {
-  if (!answered) return;
-
-  currentQuestion++;
-
-  if (currentQuestion >= 10) {
-    finishQuiz();
-  } else {
-    renderQuestion();
-  }
-}
-
-function finishQuiz() {
-  clearInterval(timer);
-  document.getElementById('quiz').classList.add('hidden');
-  document.getElementById('result').classList.remove('hidden');
-  document.getElementById('resultTitle').textContent = t('completed');
-  document.getElementById('resultDescription').textContent = t('yourResult');
-  document.getElementById('score').textContent = `${score}/10`;
-
-  let message = score >= 8 ? t('excellent') :
-                score >= 5 ? t('good') : t('practice');
-
-  document.getElementById('resultMessage').textContent = message;
-}
-
-function restartQuiz() {
-  startQuiz(currentCategory);
-}
-
-function goHome() {
-  clearInterval(timer);
-  document.getElementById('quiz').classList.add('hidden');
-  document.getElementById('result').classList.add('hidden');
-  document.getElementById('home').classList.remove('hidden');
-  document.getElementById('search').value = '';
-  filterCategories();
-}
-
-renderCategories();
-updateSeoContent();
-
-/* Snow animation */
-const canvas = document.getElementById('snow');
-const ctx = canvas.getContext('2d');
-let flakes = [];
-
-function resizeSnow() {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-  flakes = Array.from({length: Math.min(100, Math.floor(window.innerWidth / 8))},
-    () => ({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
-      r: Math.random() * 2.5 + 0.7,
-      speed: Math.random() * 1.1 + 0.4,
-      drift: Math.random() * 0.6 - 0.3
-    })
-  );
-}
-
-function drawSnow() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  ctx.fillStyle = 'rgba(255,255,255,0.75)';
-
-  flakes.forEach(f => {
-    ctx.beginPath();
-    ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2);
-    ctx.fill();
-
-    f.y += f.speed;
-    f.x += f.drift;
-
-    if (f.y > canvas.height + 5) {
-      f.y = -5;
-      f.x = Math.random() * canvas.width;
-    }
-
-    if (f.x > canvas.width + 5) f.x = -5;
-    if (f.x < -5) f.x = canvas.width + 5;
-  });
-
-  requestAnimationFrame(drawSnow);
-}
-
-resizeSnow();
-window.addEventListener('resize', resizeSnow);
-
-if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-  drawSnow();
-}
-</script>
-</body>
-</html>
+};
+// Select a relevant ten-question pool for every category. Each pool contains ten bilingual questions.
+const poolFor=i=>['newyear','starwars','homealone','cars','art','history','harrypotter','musicbands','capitals','space'][i];
+const questionCount=()=>cat>=6?15:10;
+let lang='en',cat=0,qi=0,score=0,timer=null,left=20,answered=false,shown=[],currentQ=null,answerOrder=[],selectedAnswerIndex=null,timedOut=false;
+const t=k=>T[lang][k];
+function render(){const g=document.getElementById('categories');g.innerHTML='';C.forEach((c,i)=>{let d=document.createElement('div');d.className='category';d.dataset.search=c.join(' ').toLowerCase();let h=document.createElement('h2');h.textContent=c[lang==='en'?0:1];let p=document.createElement('p');p.textContent=c[lang==='en'?2:3];let n=document.createElement('div');n.className='number';n.textContent=i<6?`${lang==='en'?'10 QUESTIONS':'10 ВОПРОСОВ'}`:`${lang==='en'?'15 QUESTIONS':'15 ВОПРОСОВ'}`;d.append(h,p,n);d.onclick=()=>start(i);g.append(d)});filter()}
+function filter(){let s=document.getElementById('search').value.trim().toLowerCase(),n=0;document.querySelectorAll('.category').forEach(x=>{let ok=x.dataset.search.includes(s);x.classList.toggle('hidden',!ok);if(ok)n++});document.getElementById('noResults').classList.toggle('hidden',n>0)}
+document.getElementById('search').addEventListener('input',filter);
+function updateText(){document.documentElement.lang=lang;document.getElementById('langBtn').textContent=lang==='en'?'RU':'EN';document.getElementById('heroTitle').innerHTML=t('hero');document.getElementById('heroText').textContent=t('intro');document.getElementById('search').placeholder=t('search');document.getElementById('noResults').textContent=t('none');document.getElementById('retryBtn').textContent=t('retry');document.getElementById('homeBtn').textContent=t('home');document.getElementById('seoTitle').textContent=lang==='en'?'Explore Free Online Quiz Categories':'Исследуй категории онлайн-викторин';document.getElementById('seoIntro').textContent=lang==='en'?'Play free quizzes about New Year, Star Wars, Home Alone, cars, art, world history, Harry Potter, music bands, world capitals and space.':'Играй в бесплатные викторины о Новом годе, «Звёздных войнах», «Один дома», автомобилях, художниках, всемирной истории, Гарри Поттере, музыкальных группах, столицах стран и космосе.';}
+function toggleLanguage(){lang=lang==='en'?'ru':'en';updateText();render();if(!document.getElementById('quiz').classList.contains('hidden'))renderCurrentQuestion();if(!document.getElementById('result').classList.contains('hidden'))renderResult()}
+function start(i){cat=i;qi=0;score=0;document.getElementById('home').classList.add('hidden');document.getElementById('result').classList.add('hidden');document.getElementById('quiz').classList.remove('hidden');loadQ()}
+function loadQ(){clearInterval(timer);const pool=Q[poolFor(cat)];currentQ=pool[qi];answerOrder=[0,1,2,3].sort(()=>Math.random()-.5);answered=false;selectedAnswerIndex=null;timedOut=false;left=20;renderCurrentQuestion();timer=setInterval(()=>{if(answered)return;left--;tick();if(left<=0){clearInterval(timer);reveal(null)}},1000)}
+function renderCurrentQuestion(){if(!currentQ)return;const questionIndex=lang==='en'?0:1,answersIndex=lang==='en'?2:3;shown={question:currentQ[questionIndex],answers:currentQ[answersIndex].map((text,index)=>({text,correct:index===currentQ[4],index}))};document.getElementById('categoryName').textContent=C[cat][lang==='en'?0:1];document.getElementById('counter').textContent=`${t('q')} ${qi+1}/${questionCount()}`;document.getElementById('question').textContent=shown.question;document.getElementById('progress').style.width=`${(qi/questionCount())*100}%`;const box=document.getElementById('answers');box.innerHTML='';answerOrder.forEach(index=>{const a=shown.answers[index],b=document.createElement('button');b.className='answer';b.textContent=a.text;b.disabled=answered;b.onclick=()=>choose(a);if(answered&&a.correct)b.classList.add('correct');else if(answered&&selectedAnswerIndex===index&&!a.correct)b.classList.add('wrong');box.append(b)});renderFeedback();document.getElementById('nextBtn').classList.toggle('hidden',!answered);if(answered)document.getElementById('nextBtn').textContent=qi===questionCount()-1?t('done'):t('next');tick()}
+function renderFeedback(){const el=document.getElementById('feedback');if(!answered){el.textContent='';return}const correct=shown.answers.find(a=>a.correct)?.text||'';el.textContent=timedOut?`${t('time')} ${correct}`:selectedAnswerIndex===currentQ[4]?t('correct'):`${t('wrong')} ${correct}`}
+function tick(){document.getElementById('timer').textContent=`${left} ${t('sec')}`}
+function choose(a){if(answered)return;if(a.correct)score++;reveal(a)}
+function reveal(sel){if(answered)return;answered=true;timedOut=sel===null;selectedAnswerIndex=sel?sel.index:null;clearInterval(timer);renderCurrentQuestion()}
+function nextQuestion(){if(!answered)return;qi++;if(qi===questionCount())finish();else loadQ()}
+function finish(){clearInterval(timer);document.getElementById('quiz').classList.add('hidden');document.getElementById('result').classList.remove('hidden');renderResult()}
+function renderResult(){document.getElementById('resultTitle').textContent=t('done');document.getElementById('resultDescription').textContent=t('result');document.getElementById('score').textContent=`${score}/${questionCount()}`;document.getElementById('resultMessage').textContent=score>=Math.ceil(questionCount()*.8)?t('excellent'):score>=Math.ceil(questionCount()*.5)?t('good'):t('practice')}
+function restartQuiz(){start(cat)}function goHome(){clearInterval(timer);document.getElementById('quiz').classList.add('hidden');document.getElementById('result').classList.add('hidden');document.getElementById('home').classList.remove('hidden');document.getElementById('search').value='';filter()}
+updateText();render();
+const cv=document.getElementById('snow'),cx=cv.getContext('2d');let flakes=[];function resize(){cv.width=innerWidth;cv.height=innerHeight;flakes=Array.from({length:Math.min(100,Math.floor(innerWidth/8))},()=>({x:Math.random()*cv.width,y:Math.random()*cv.height,r:Math.random()*2.5+.7,s:Math.random()*1.1+.4,d:Math.random()*.6-.3}))}function snow(){cx.clearRect(0,0,cv.width,cv.height);cx.fillStyle='rgba(255,255,255,.75)';flakes.forEach(f=>{cx.beginPath();cx.arc(f.x,f.y,f.r,0,Math.PI*2);cx.fill();f.y+=f.s;f.x+=f.d;if(f.y>cv.height+5){f.y=-5;f.x=Math.random()*cv.width}if(f.x>cv.width+5)f.x=-5;if(f.x< -5)f.x=cv.width});requestAnimationFrame(snow)}resize();addEventListener('resize',resize);if(!matchMedia('(prefers-reduced-motion: reduce)').matches)snow();
+</script></body></html>
